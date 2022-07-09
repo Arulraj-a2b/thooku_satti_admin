@@ -10,11 +10,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.17.7",
     "@react-native-firebase/app": "^15.1.1",
     "@react-native-firebase/messaging": "^15.1.1",
     "react": "18.0.0",
     "react-native": "0.69.1",
-    "react-native-firebase-push-notifications": "^2.0.2"
+    "react-native-push-notification": "^8.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "103074734263",
+    "project_id": "thookusattiadmin",
+    "storage_bucket": "thookusattiadmin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103074734263:android:4a10fbc2fb34406d88ad32",
+        "android_client_info": {
+          "package_name": "com.thooku_satti_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103074734263-8o1b4kgmjt5soo5cho5im99sb1o5ilno.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrqcwgLEo_jy7tD5s_CE6RVUM5KU8hQV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103074734263-8o1b4kgmjt5soo5cho5im99sb1o5ilno.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
