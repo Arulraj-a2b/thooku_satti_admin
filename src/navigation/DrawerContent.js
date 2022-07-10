@@ -71,21 +71,21 @@ const DrawerContent = props => {
   };
 
   const dataList = [
-    {
-      route: () => {
-        // props.navigation.navigate(routesPath.MY_ORDER_SCREEN);
-      },
-      title: 'My Orders',
-      icon: (
-        <View style={{position: 'relative', right: 3}}>
-          {/* <SvgMyorder /> */}
-        </View>
-      ),
-    },
+    // {
+    //   route: () => {
+    //     // props.navigation.navigate(routesPath.MY_ORDER_SCREEN);
+    //   },
+    //   title: 'My Orders',
+    //   icon: (
+    //     <View style={{position: 'relative', right: 3}}>
+    //       {/* <SvgMyorder /> */}
+    //     </View>
+    //   ),
+    // },
   ];
 
   return (
-    <Flex flex={1} overrideStyle={styles.overAll}>
+    <Flex flex={1} between overrideStyle={styles.overAll}>
       <Pressable
         onPress={() => props.navigation.closeDrawer()}
         style={styles.svgClose}>
@@ -102,7 +102,7 @@ const DrawerContent = props => {
         <Text color="gray">{userDetails && userDetails.MobileNo}</Text>
       </Flex>
       <Flex flex={1}>
-        {dataList.map((list, index) => {
+        {dataList.length !==0 && dataList.map((list, index) => {
           return (
             <View
               style={[styles.listStyle]}
