@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Provider} from 'react-redux';
-import SplashScreen from 'react-native-splash-screen';
 import {StatusBar, TouchableOpacity} from 'react-native';
 import {useNetInfo} from '@react-native-community/netinfo';
 import {RootSiblingParent} from 'react-native-root-siblings';
@@ -19,9 +18,7 @@ const App = () => {
 
   useEffect(() => {
     startNetworkLogging();
-    // AsyncStorage.removeItem('geoLocationDone');
     requestUserPermission();
-    SplashScreen.hide();
   }, []);
 
   const handleToggleLogger = () => setShowLogger(!showLogger);
@@ -54,9 +51,7 @@ const App = () => {
       </RootSiblingParent>
     </SafeAreaProvider>
   ) : (
-    <SafeAreaProvider>
-      {/* <OfflineScreen /> */}
-    </SafeAreaProvider>
+    <SafeAreaProvider>{/* <OfflineScreen /> */}</SafeAreaProvider>
   );
 };
 
