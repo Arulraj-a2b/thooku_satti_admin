@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {SECONDARY} from '../UikitUtils/colors';
+import {ERROR, SECONDARY,SUCCESS} from '../UikitUtils/colors';
 
 export const buttonStyles = StyleSheet.create({
   smallHeight: {
@@ -33,5 +33,14 @@ export const buttonStyles = StyleSheet.create({
   },
   round: {
     borderRadius: 20,
+  },
+  successBtn: {
+    backgroundColor: 'rgba(20, 159, 84, 0.25)',
+    borderColor: SUCCESS,
+  },
+  errorBtn: {
+    backgroundColor: 'rgba(254, 34, 34, 0.25)',
+    borderColor: ERROR,
+    borderWidth: 1,
   },
 });

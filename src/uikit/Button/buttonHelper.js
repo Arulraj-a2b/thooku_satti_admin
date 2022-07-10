@@ -22,6 +22,10 @@ export const buttonHelper = ({ flex, styleArray, height, types ,normal,round}) =
     styleArray.push(buttonStyles.primaryBtn);
   } else if (types === "secondary") {
     styleArray.push(buttonStyles.secondaryBtn);
+  } else if (types === "error") {
+    styleArray.push(buttonStyles.errorBtn);
+  } else if (types === "success") {
+    styleArray.push(buttonStyles.successBtn);
   }
 
   if(normal){

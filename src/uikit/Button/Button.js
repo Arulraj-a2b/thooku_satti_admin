@@ -22,12 +22,20 @@ const Button = ({
   normal,
   round,
   isLoader,
+  width
 }) => {
   const [styleContainer, setStyleContainer] = useState([]);
   let textColor = 'gray_1';
 
   if (types === 'secondary') {
     textColor = 'secondary';
+  }
+
+  if (types === 'error') {
+    textColor = 'error';
+  }
+  if (types === 'success') {
+    textColor = 'success';
   }
 
   useEffect(() => {
@@ -49,7 +57,7 @@ const Button = ({
 
   return (
     <TouchableOpacity
-      style={[styleContainer, overrideStyle, {opacity: disabled ? 0.5 : 1}]}
+      style={[styleContainer, overrideStyle, {opacity: disabled ? 0.5 : 1,width:width}]}
       onPress={onClick}
       disabled={disabled}>
       <Flex row center middle>
