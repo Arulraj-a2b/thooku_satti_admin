@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {routesPath} from '../routes/routesPath';
-import OrderWaitingScreen from '../modules/homemodule/OrderWaitingScreen';
+import OrderWaitingScreen from '../modules/orderwaitingmodule/OrderWaitingScreen';
 import SvgWaiting from '../icons/SvgWaiting';
 import TabBarIcon from './TabBarIcon';
 import {GRAY_4, PRIMARY} from '../uikit/UikitUtils/colors';

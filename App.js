@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
-// import {Provider} from 'react-redux';
+import {Provider} from 'react-redux';
+import SplashScreen from 'react-native-splash-screen';
 import {StatusBar, TouchableOpacity} from 'react-native';
 import {useNetInfo} from '@react-native-community/netinfo';
 import {RootSiblingParent} from 'react-native-root-siblings';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-// import store from './store';
+import store from './store';
 import AppLayout from './src/navigation/AppLayout';
 import {requestUserPermission} from './src/utility/notificationService';
-// import OfflineScreen from './src/modules/offlinemodule/OfflineScreen';
 import Logger, {startNetworkLogging} from 'react-native-network-logger';
 import Text from './src/uikit/Text/Text';
 import {PRIMARY} from './src/uikit/UikitUtils/colors';
@@ -21,17 +21,18 @@ const App = () => {
     startNetworkLogging();
     // AsyncStorage.removeItem('geoLocationDone');
     requestUserPermission();
+    SplashScreen.hide();
   }, []);
 
   const handleToggleLogger = () => setShowLogger(!showLogger);
 
   const netInfo = useNetInfo();
   const isProd = true;
-  
+
   return netInfo.isConnected || netInfo.isConnected === null ? (
     <SafeAreaProvider>
       <RootSiblingParent>
-        {/* <Provider store={store}> */}
+        <Provider store={store}>
           <StatusBar backgroundColor={PRIMARY} />
           <NavigationContainer>
             {isProd ? (
@@ -49,7 +50,7 @@ const App = () => {
               </>
             )}
           </NavigationContainer>
-        {/* </Provider> */}
+        </Provider>
       </RootSiblingParent>
     </SafeAreaProvider>
   ) : (
