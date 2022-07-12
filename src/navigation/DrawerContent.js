@@ -12,8 +12,9 @@ import Flex from '../uikit/Flex/Flex';
 import Text from '../uikit/Text/Text';
 import Button from '../uikit/Button/Button';
 import SvgLogout from '../icons/SvgLogout';
-import {WHITE} from '../uikit/UikitUtils/colors';
+import {GRAY_6, WHITE} from '../uikit/UikitUtils/colors';
 import SvgClose from '../icons/SvgClose';
+import SvgWaiting from '../icons/SvgWaiting';
 
 const styles = StyleSheet.create({
   listStyle: {
@@ -75,13 +76,14 @@ const DrawerContent = props => {
     //   route: () => {
     //     // props.navigation.navigate(routesPath.MY_ORDER_SCREEN);
     //   },
-    //   title: 'My Orders',
+    //   title: 'Waiting List',
     //   icon: (
-    //     <View style={{position: 'relative', right: 3}}>
-    //       {/* <SvgMyorder /> */}
+    //     <View style={{position: 'relative', right: 2}}>
+    //       <SvgWaiting width={22} height={22} fill={GRAY_6} />
     //     </View>
     //   ),
     // },
+    
   ];
 
   return (
@@ -102,20 +104,21 @@ const DrawerContent = props => {
         <Text color="gray">{userDetails && userDetails.MobileNo}</Text>
       </Flex>
       <Flex flex={1}>
-        {dataList.length !==0 && dataList.map((list, index) => {
-          return (
-            <View
-              style={[styles.listStyle]}
-              key={index.toString() + list.title}>
-              <TouchableOpacity onPress={list.route}>
-                <Flex row center>
-                  <View style={{width: 40}}>{list.icon}</View>
-                  <Text size={16}>{list.title}</Text>
-                </Flex>
-              </TouchableOpacity>
-            </View>
-          );
-        })}
+        {dataList.length !== 0 &&
+          dataList.map((list, index) => {
+            return (
+              <View
+                style={[styles.listStyle]}
+                key={index.toString() + list.title}>
+                <TouchableOpacity onPress={list.route}>
+                  <Flex row center>
+                    <View style={{width: 40}}>{list.icon}</View>
+                    <Text size={16}>{list.title}</Text>
+                  </Flex>
+                </TouchableOpacity>
+              </View>
+            );
+          })}
       </Flex>
       <Button round overrideStyle={styles.btnStyle} onClick={logout}>
         <Flex row center>

@@ -12,7 +12,7 @@ import {requestUserPermission} from './src/utility/notificationService';
 import Logger, {startNetworkLogging} from 'react-native-network-logger';
 import Text from './src/uikit/Text/Text';
 import {PRIMARY} from './src/uikit/UikitUtils/colors';
-
+import OfflineScreen from './src/modules/offlinemodule/OfflineScreen'
 const App = () => {
   const [showLogger, setShowLogger] = useState(false);
 
@@ -51,7 +51,9 @@ const App = () => {
       </RootSiblingParent>
     </SafeAreaProvider>
   ) : (
-    <SafeAreaProvider>{/* <OfflineScreen /> */}</SafeAreaProvider>
+    <SafeAreaProvider>
+      <OfflineScreen />
+    </SafeAreaProvider>
   );
 };
 

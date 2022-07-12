@@ -1,2 +1,4 @@
 import {loginReducers} from '../modules/loginmodule/store/loginReducer';
-export const reducers = {loginReducers};
+import {getOrderDetailsReducers} from '../modules/orderwaitingmodule/store/orderWaitingReducer';
+
+export const reducers = {loginReducers, getOrderDetailsReducers};

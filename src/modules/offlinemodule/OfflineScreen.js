@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-// import RNRestart from 'react-native-restart';
+import RNRestart from 'react-native-restart';
 import SvgNoInternet from '../../icons/SvgNoInternet';
 import Flex from '../../uikit/Flex/Flex';
 import Text from '../../uikit/Text/Text';
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
 const OfflineScreen = () => {
   const handleRelod = () => {
-    // RNRestart.Restart();
+    RNRestart.Restart();
   };
   return (
     <Flex flex={1} middle center>
