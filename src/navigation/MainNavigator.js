@@ -4,6 +4,8 @@ import {WHITE} from '../uikit/UikitUtils/colors';
 import {routesPath} from '../routes/routesPath';
 import LoginScreen from '../modules/loginmodule/LoginScreen';
 import SideNavigation from './SideNavigation';
+import OrderDetailsScreen from '../modules/orderdetailsmodule/OrderDetailsScreen';
+import Header from './Header';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +28,13 @@ const MainNavigator = () => {
         options={{headerShown: false}}
         name={routesPath.ALL_SCREEN}
         component={SideNavigation}
+      />
+      <Stack.Screen
+        options={{
+          header: props => <Header props={props} isMenu={false}/>,
+        }}
+        name={routesPath.ORDER_DETAILS_SCREEN}
+        component={OrderDetailsScreen}
       />
     </Stack.Navigator>
   );

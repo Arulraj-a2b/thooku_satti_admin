@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Header = ({props, isBack, backPath}) => {
+const Header = ({props, isBack, backPath, isMenu}) => {
   const handleOpenDrawer = () => {
     props.navigation.openDrawer();
   };
@@ -56,9 +56,11 @@ const Header = ({props, isBack, backPath}) => {
           {props.options.title}
         </Text>
       </Flex>
-      <Pressable style={styles.hamburgerStyle} onPress={handleOpenDrawer}>
-        <SvgHamburger fill={WHITE} width={14} height={8} />
-      </Pressable>
+      {isMenu && (
+        <Pressable style={styles.hamburgerStyle} onPress={handleOpenDrawer}>
+          <SvgHamburger fill={WHITE} width={14} height={8} />
+        </Pressable>
+      )}
     </Flex>
   );
 };

@@ -5,6 +5,7 @@ export const routesPath = {
   ALL_SCREEN: 'AllScreen',
   ORDER_PICKUP_SCREEN: 'OrderPickupScreen',
   ORDER_LIST_SCREEN: 'OrderListScreen',
+  ORDER_DETAILS_SCREEN: 'OrderDetailsScreen',
 };
 
 export const stacks = {

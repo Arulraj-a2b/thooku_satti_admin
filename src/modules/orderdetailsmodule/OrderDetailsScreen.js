@@ -1,14 +1,15 @@
 import React, {useEffect} from 'react';
+import Flex from '../../uikit/Flex/Flex';
+import Text from '../../uikit/Text/Text';
 import {useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import Flex from '../../uikit/Flex/Flex';
-import Text from '../../uikit/Text/Text';
 import {WHITE, GRAY_1, BORDER_COLOR} from '../../uikit/UikitUtils/colors';
 import SvgLocation3 from '../../icons/SvgLocation3';
 import {INDIAN_RUPEE} from '../../uikit/UikitUtils/constants';
 import {isFinancial} from '../../uikit/UikitUtils/helpers';
 import {getOrderDetailsMiddleWare} from '../orderwaitingmodule/store/orderWaitingMiddleware';
+import HomePlaceHolder from '../common/HomePlaceHolder';
 
 const styles = StyleSheet.create({
   overAll: {
@@ -19,6 +20,10 @@ const styles = StyleSheet.create({
   },
   hotelName: {
     marginTop: 30,
+    marginBottom: 12,
+  },
+  deliveryAddress: {
+    marginTop: 20,
     marginBottom: 12,
   },
   listFlex: {
@@ -67,10 +72,9 @@ const OrderDetailsScreen = () => {
       data: getOrderDetailsReducers.data,
     };
   });
-
-  // if (isLoading) {
-  //   return <Loader;
-  // }
+  if (isLoading) {
+    return <HomePlaceHolder />;
+  }
 
   return (
     Array.isArray(data) &&
@@ -78,19 +82,52 @@ const OrderDetailsScreen = () => {
       <ScrollView style={styles.overAll}>
         <Flex>
           <Text size={16} bold>
-            ORDER ID: #{routes.params && routes.params.orderId}
+            ORDER ID:
           </Text>
-          {/* <Text color="gray">Delivered,  ₹500</Text> */}
-          <Flex row overrideStyle={styles.hotelName}>
-            <SvgLocation3 fill={GRAY_1} />
-            <Flex overrideStyle={{marginLeft: 8}}>
-              <Text color="theme" bold size={16}>
-                {data[0].HotelName}
-              </Text>
-              <Text size={12} color="gray">
-                {data[0].Address}
-              </Text>
+          <Text>#{routes.params && routes.params.orderId}</Text>
+          <Flex overrideStyle={{position: 'relative'}}>
+            <View
+              style={{
+                borderLeftColor: BORDER_COLOR,
+                borderLeftWidth: 2,
+                height: 55,
+                position: 'absolute',
+                alignContent: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                top: 50,
+                left: 11,
+              }}
+            />
+            <Flex row overrideStyle={styles.hotelName}>
+              <SvgLocation3 fill={GRAY_1} />
+              <Flex overrideStyle={{marginLeft: 8}}>
+                <Text color="theme" bold size={16}>
+                  {data[0].HotelName}
+                </Text>
+                <Text size={12} color="gray">
+                  {data[0].Address}
+                </Text>
+              </Flex>
             </Flex>
+
+            <Flex row overrideStyle={styles.deliveryAddress}>
+              <SvgLocation3 fill={GRAY_1} />
+              <Flex overrideStyle={{marginLeft: 8}}>
+                <Text bold size={16}>
+                  {data[0].DeliveryAddress}
+                </Text>
+                <Text size={12} color="gray">
+                  {data[0].CustomerMobileno}
+                </Text>
+              </Flex>
+            </Flex>
+          </Flex>
+
+          <View style={styles.hrLine} />
+          <Flex row overrideStyle={{marginVertical: 8}}>
+            <Text bold>Status:{'  '}</Text>
+            <Text>{data[0].LiveStatus}</Text>
           </Flex>
           <View style={styles.hrLine} />
           <Text color="gary" bold overrideStyle={styles.billTitle}>
@@ -138,6 +175,7 @@ const OrderDetailsScreen = () => {
               </Text>
             </Flex>
           )}
+
           <View style={styles.hrLineOne} />
           <Flex
             row
@@ -151,6 +189,9 @@ const OrderDetailsScreen = () => {
             </Text>
           </Flex>
           <View style={styles.hrLineOne} />
+          {/* <Button types={'secondary'} overrideStyle={styles.btnStyle}>
+            Re-Order
+          </Button> */}
         </Flex>
       </ScrollView>
     )

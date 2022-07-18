@@ -1,9 +1,12 @@
-import React from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import React, {useCallback} from 'react';
 import {FlatList, StyleSheet} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import Flex from '../../uikit/Flex/Flex';
-import Text from '../../uikit/Text/Text';
 import {WHITE} from '../../uikit/UikitUtils/colors';
+import HomePlaceHolder from '../common/HomePlaceHolder';
 import OrderCard from '../common/OrderCard';
+import {getAdminMasterOrderMiddleWare} from './store/orderWaitingMiddleware';
 
 const styles = StyleSheet.create({
   flatListOverAll: {
@@ -16,13 +19,24 @@ const styles = StyleSheet.create({
 });
 
 const OrderWaitingScreen = () => {
-  const data = [
-    {name: 'aa'},
-    {name: 'aa'},
-    {name: 'aa'},
-    {name: 'aa'},
-    {name: 'aa'},
-  ];
+  const dispatch = useDispatch();
+
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(getAdminMasterOrderMiddleWare({code: '1'}));
+    }, []),
+  );
+
+  const {isLoading, data} = useSelector(({getAdminMasterOrderReducers}) => {
+    return {
+      isLoading: getAdminMasterOrderReducers.isLoading,
+      data: getAdminMasterOrderReducers.data,
+    };
+  });
+
+  if(isLoading){
+    return <HomePlaceHolder/>
+  }
   return (
     <Flex overrideStyle={styles.overAll}>
       <FlatList
@@ -30,7 +44,7 @@ const OrderWaitingScreen = () => {
         style={styles.flatListOverAll}
         data={data}
         keyExtractor={(_item, index) => index.toString()}
-        renderItem={({item}) => <OrderCard isWaiting/>}
+        renderItem={({item}) => <OrderCard isWaiting item={item}/>}
       />
     </Flex>
   );
