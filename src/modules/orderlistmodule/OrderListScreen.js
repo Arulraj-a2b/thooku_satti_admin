@@ -43,7 +43,7 @@ const OrderListScreen = () => {
         style={styles.flatListOverAll}
         data={data}
         keyExtractor={(_item, index) => index.toString()}
-        renderItem={({item}) => <OrderCard isList />}
+        renderItem={({item}) => <OrderCard isList item={item}/>}
       />
     </Flex>
   );
