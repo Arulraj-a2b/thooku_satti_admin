@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const OrderListScreen = () => {
+const OrderSuccessScreen = () => {
   const dispatch = useDispatch();
 
   useFocusEffect(
     useCallback(() => {
-      dispatch(getAdminMasterOrderMiddleWare({code: '4'}));
+      dispatch(getAdminMasterOrderMiddleWare({code: '3'}));
     }, []),
   );
 
@@ -43,10 +43,10 @@ const OrderListScreen = () => {
         style={styles.flatListOverAll}
         data={data}
         keyExtractor={(_item, index) => index.toString()}
-        renderItem={({item}) => <OrderCard isList item={item}/>}
+        renderItem={({item}) => <OrderCard isSuccess item={item} />}
       />
     </Flex>
   );
 };
 
-export default OrderListScreen;
+export default OrderSuccessScreen;

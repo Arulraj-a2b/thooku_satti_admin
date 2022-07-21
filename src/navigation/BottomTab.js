@@ -1,16 +1,16 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {routesPath} from '../routes/routesPath';
-import OrderWaitingScreen from '../modules/orderwaitingmodule/OrderWaitingScreen';
 import SvgWaiting from '../icons/SvgWaiting';
 import TabBarIcon from './TabBarIcon';
 import {GRAY_4, PRIMARY} from '../uikit/UikitUtils/colors';
-import OrderPreparationScreen from '../modules/orderpreparationmodule/OrderPreparationScreen';
-import SvgOrderPreparation from '../icons/SvgOrderPreparation';
-import OrderPickupScreen from '../modules/orderpickupmodule/OrderPickupScreen';
 import SvgOrderPickup from '../icons/SvgOrderPickup';
-import OrderListScreen from '../modules/orderlistmodule/OrderListScreen';
-import SvgOrderList from '../icons/SvgOrderList';
+import SvgOrderSuccess from '../icons/SvgOrderSuccess';
+import SvgOrderCancel from '../icons/SvgOrderCancel';
+import OrderWaitingScreen from '../modules/orderwaitingmodule/OrderWaitingScreen';
+import OrderPickupScreen from '../modules/orderpickupmodule/OrderPickupScreen';
+import OrderSuccessScreen from '../modules/ordersuccessmodule/OrderSuccessScreen';
+import OrderCancelListScreen from '../modules/ordercancellistmodule/OrderCancelListScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,19 +32,6 @@ const BottomTab = () => {
       />
       <Tab.Screen
         name={routesPath.ORDER_PREPARATION_SCREEN}
-        component={OrderPreparationScreen}
-        options={{
-          title: '',
-          tabBarIcon: ({focused}) => (
-            <TabBarIcon
-              icon={<SvgOrderPreparation fill={focused ? PRIMARY : GRAY_4} />}
-            />
-          ),
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name={routesPath.ORDER_PICKUP_SCREEN}
         component={OrderPickupScreen}
         options={{
           title: '',
@@ -57,13 +44,26 @@ const BottomTab = () => {
         }}
       />
       <Tab.Screen
-        name={routesPath.ORDER_LIST_SCREEN}
-        component={OrderListScreen}
+        name={routesPath.ORDER_PICKUP_SCREEN}
+        component={OrderSuccessScreen}
         options={{
           title: '',
           tabBarIcon: ({focused}) => (
             <TabBarIcon
-              icon={<SvgOrderList fill={focused ? PRIMARY : GRAY_4} />}
+              icon={<SvgOrderSuccess fill={focused ? PRIMARY : GRAY_4} />}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name={routesPath.ORDER_LIST_SCREEN}
+        component={OrderCancelListScreen}
+        options={{
+          title: '',
+          tabBarIcon: ({focused}) => (
+            <TabBarIcon
+              icon={<SvgOrderCancel fill={focused ? PRIMARY : GRAY_4} />}
             />
           ),
           headerShown: false,

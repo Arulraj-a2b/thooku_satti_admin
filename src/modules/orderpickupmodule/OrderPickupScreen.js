@@ -23,7 +23,7 @@ const OrderPickupScreen = () => {
 
   useFocusEffect(
     useCallback(() => {
-      dispatch(getAdminMasterOrderMiddleWare({code: '3'}));
+      dispatch(getAdminMasterOrderMiddleWare({code: '2'}));
     }, []),
   );
 

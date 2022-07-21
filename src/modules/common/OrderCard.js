@@ -5,7 +5,8 @@ import Flex from '../../uikit/Flex/Flex';
 import Text from '../../uikit/Text/Text';
 import Button from '../../uikit/Button/Button';
 import {useNavigation} from '@react-navigation/native';
-import { routesPath } from '../../routes/routesPath';
+import {routesPath} from '../../routes/routesPath';
+import {ERROR, SUCCESS} from '../../uikit/UikitUtils/colors';
 
 const styles = StyleSheet.create({
   overAll: {
@@ -26,6 +27,22 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginTop: 8,
   },
+  success: {
+    backgroundColor: 'rgba(20, 159, 84, 0.25)',
+    borderColor: SUCCESS,
+    paddingHorizontal: 16,
+    paddingVertical: 6,
+    borderRadius: 4,
+    borderWidth: 1,
+  },
+  errorBtn: {
+    backgroundColor: 'rgba(254, 34, 34, 0.25)',
+    borderColor: ERROR,
+    borderWidth: 1,
+    paddingHorizontal: 16,
+    paddingVertical: 6,
+    borderRadius: 4,
+  },
 });
 
 const ListText = ({name, value}) => {
@@ -39,11 +56,11 @@ const ListText = ({name, value}) => {
   );
 };
 
-const OrderCard = ({isWaiting, isPreparation, isPickUp, isList, item}) => {
+const OrderCard = ({isWaiting, isSuccess, isPickUp, isCancel, item}) => {
   const navigation = useNavigation();
   const handleViewDetails = () => {
     navigation.navigate(routesPath.ORDER_DETAILS_SCREEN, {
-      orderId:item?.OrderID,
+      orderId: item?.OrderID,
     });
   };
   return (
@@ -70,21 +87,33 @@ const OrderCard = ({isWaiting, isPreparation, isPickUp, isList, item}) => {
           <Button flex={1}>ACCEPT</Button>
         </Flex>
       )}
-      {isPreparation && (
+      {isPickUp && (
         <Flex center>
           <Button width={150}>PICKUP</Button>
         </Flex>
       )}
-      {isPickUp && (
+      {isSuccess && (
         <Flex center>
-          <Button width={150}>DELIVERED</Button>
+          <Text
+            transform={'uppercase'}
+            size={12}
+            overrideStyle={styles.success}
+            bold
+            color="success">
+            {item?.LiveStatus}
+          </Text>
         </Flex>
       )}
-      {isList && (
+      {isCancel && (
         <Flex center>
-          <Button width={150} types={'error'}>
-            SUCCESS
-          </Button>
+          <Text
+            transform={'uppercase'}
+            size={12}
+            overrideStyle={styles.errorBtn}
+            bold
+            color="error">
+            {item?.LiveStatus}
+          </Text>
         </Flex>
       )}
     </Card>

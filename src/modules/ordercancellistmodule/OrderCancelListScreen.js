@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const OrderPreparationScreen = () => {
+const OrderCancelListScreen = () => {
   const dispatch = useDispatch();
 
   useFocusEffect(
     useCallback(() => {
-      dispatch(getAdminMasterOrderMiddleWare({code: '2'}));
+      dispatch(getAdminMasterOrderMiddleWare({code: '4'}));
     }, []),
   );
 
@@ -43,10 +43,10 @@ const OrderPreparationScreen = () => {
         style={styles.flatListOverAll}
         data={data}
         keyExtractor={(_item, index) => index.toString()}
-        renderItem={({item}) => <OrderCard isPreparation item={item} />}
+        renderItem={({item}) => <OrderCard isCancel item={item}/>}
       />
     </Flex>
   );
 };
 
-export default OrderPreparationScreen;
+export default OrderCancelListScreen;
