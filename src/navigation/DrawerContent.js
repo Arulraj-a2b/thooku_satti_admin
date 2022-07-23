@@ -15,6 +15,11 @@ import SvgLogout from '../icons/SvgLogout';
 import {GRAY_6, WHITE} from '../uikit/UikitUtils/colors';
 import SvgClose from '../icons/SvgClose';
 import SvgWaiting from '../icons/SvgWaiting';
+import {routesPath} from '../routes/routesPath';
+import SvgOrderPickup from '../icons/SvgOrderPickup';
+import SvgOrderSuccess from '../icons/SvgOrderSuccess';
+import SvgOrderCancel from '../icons/SvgOrderCancel';
+import SvgRestaurant from '../icons/SvgRestaurant';
 
 const styles = StyleSheet.create({
   listStyle: {
@@ -72,18 +77,61 @@ const DrawerContent = props => {
   };
 
   const dataList = [
-    // {
-    //   route: () => {
-    //     // props.navigation.navigate(routesPath.MY_ORDER_SCREEN);
-    //   },
-    //   title: 'Waiting List',
-    //   icon: (
-    //     <View style={{position: 'relative', right: 2}}>
-    //       <SvgWaiting width={22} height={22} fill={GRAY_6} />
-    //     </View>
-    //   ),
-    // },
-    
+    {
+      route: () => {
+        props.navigation.navigate(routesPath.ORDER_WAITING_SCREEN);
+      },
+      title: 'Waiting List',
+      icon: (
+        <View style={{position: 'relative', right: 2}}>
+          <SvgWaiting width={20} height={20} fill={GRAY_6} />
+        </View>
+      ),
+    },
+    {
+      route: () => {
+        props.navigation.navigate(routesPath.ORDER_PREPARATION_SCREEN);
+      },
+      title: 'PickUp List',
+      icon: (
+        <View style={{position: 'relative', right: 5}}>
+          <SvgOrderPickup width={24} height={22} fill={GRAY_6} />
+        </View>
+      ),
+    },
+    {
+      route: () => {
+        props.navigation.navigate(routesPath.ORDER_PICKUP_SCREEN);
+      },
+      title: 'Delivered List',
+      icon: (
+        <View style={{position: 'relative', right: 2}}>
+          <SvgOrderSuccess width={18} height={18} fill={GRAY_6} />
+        </View>
+      ),
+    },
+    {
+      route: () => {
+        props.navigation.navigate(routesPath.ORDER_LIST_SCREEN);
+      },
+      title: 'Cancel List',
+      icon: (
+        <View style={{position: 'relative', right: 2}}>
+          <SvgOrderCancel width={18} height={18} fill={GRAY_6} />
+        </View>
+      ),
+    },
+    {
+      route: () => {
+        props.navigation.navigate(routesPath.DINING_SCREEN);
+      },
+      title: 'Dining List',
+      icon: (
+        <View style={{position: 'relative', right: 2}}>
+          <SvgRestaurant width={18} height={18} fill={GRAY_6} />
+        </View>
+      ),
+    },
   ];
 
   return (

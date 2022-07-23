@@ -13,7 +13,6 @@ import OrderSuccessScreen from '../modules/ordersuccessmodule/OrderSuccessScreen
 import OrderCancelListScreen from '../modules/ordercancellistmodule/OrderCancelListScreen';
 import DiningScreen from '../modules/diningmodule/DiningScreen';
 import SvgRestaurant from '../icons/SvgRestaurant';
-import {View} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 

@@ -1,6 +1,9 @@
 import messaging from '@react-native-firebase/messaging';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PushNotification from 'react-native-push-notification';
+import {navigationRef} from '../../App';
+import {getAdminMasterOrderMiddleWare} from '../modules/orderwaitingmodule/store/orderWaitingMiddleware';
+import {getDiningMiddleWare} from '../modules/diningmodule/store/diningMiddleWare';
 
 export const handleNotification = message => {
   // PushNotification.cancelAllLocalNotifications();
@@ -71,14 +74,19 @@ export const localNotificationNavigate = (navigation, dispatch) => {
         navigation.navigate(notification.data?.route, {
           orderId: notification.data?.booking_id,
         });
+      } else if (
+        navigationRef.current.getCurrentRoute().name === 'OrderWaitingScreen' &&
+        notification &&
+        notification.userInteraction === false
+      ) {
+        dispatch(getAdminMasterOrderMiddleWare({code: '1'}));
+      } else if (
+        navigationRef.current.getCurrentRoute().name === 'DiningScreen' &&
+        notification &&
+        notification.userInteraction === false
+      ) {
+        dispatch(getDiningMiddleWare());
       }
-      // else if (
-      //   navigationRef.current.getCurrentRoute().name === 'MyOrderScreen' &&
-      //   notification &&
-      //   notification.userInteraction === false
-      // ) {
-      //   dispatch(getUpComingOrderMiddleWare());
-      // }
     },
     permissions: {
       alert: true,

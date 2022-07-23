@@ -16,8 +16,7 @@ import OfflineScreen from './src/modules/offlinemodule/OfflineScreen';
 
 export const navigationRef = React.createRef(); // we will access all navigation props by importing this in any of the component
 
-
-const isProd = false;
+const isProd = true;
 
 const App = () => {
   const [showLogger, setShowLogger] = useState(false);
