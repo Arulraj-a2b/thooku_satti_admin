@@ -11,6 +11,9 @@ import OrderWaitingScreen from '../modules/orderwaitingmodule/OrderWaitingScreen
 import OrderPickupScreen from '../modules/orderpickupmodule/OrderPickupScreen';
 import OrderSuccessScreen from '../modules/ordersuccessmodule/OrderSuccessScreen';
 import OrderCancelListScreen from '../modules/ordercancellistmodule/OrderCancelListScreen';
+import DiningScreen from '../modules/diningmodule/DiningScreen';
+import SvgRestaurant from '../icons/SvgRestaurant';
+import {View} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -64,6 +67,19 @@ const BottomTab = () => {
           tabBarIcon: ({focused}) => (
             <TabBarIcon
               icon={<SvgOrderCancel fill={focused ? PRIMARY : GRAY_4} />}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name={routesPath.DINING_SCREEN}
+        component={DiningScreen}
+        options={{
+          title: '',
+          tabBarIcon: ({focused}) => (
+            <TabBarIcon
+              icon={<SvgRestaurant fill={focused ? PRIMARY : GRAY_4} />}
             />
           ),
           headerShown: false,

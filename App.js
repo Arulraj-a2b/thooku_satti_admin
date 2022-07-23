@@ -12,7 +12,13 @@ import {requestUserPermission} from './src/utility/notificationService';
 import Logger, {startNetworkLogging} from 'react-native-network-logger';
 import Text from './src/uikit/Text/Text';
 import {PRIMARY} from './src/uikit/UikitUtils/colors';
-import OfflineScreen from './src/modules/offlinemodule/OfflineScreen'
+import OfflineScreen from './src/modules/offlinemodule/OfflineScreen';
+
+export const navigationRef = React.createRef(); // we will access all navigation props by importing this in any of the component
+
+
+const isProd = false;
+
 const App = () => {
   const [showLogger, setShowLogger] = useState(false);
 
@@ -24,14 +30,13 @@ const App = () => {
   const handleToggleLogger = () => setShowLogger(!showLogger);
 
   const netInfo = useNetInfo();
-  const isProd = true;
 
   return netInfo.isConnected || netInfo.isConnected === null ? (
     <SafeAreaProvider>
       <RootSiblingParent>
         <Provider store={store}>
           <StatusBar backgroundColor={PRIMARY} />
-          <NavigationContainer>
+          <NavigationContainer ref={navigationRef}>
             {isProd ? (
               <AppLayout />
             ) : (

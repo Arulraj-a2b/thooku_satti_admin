@@ -6,6 +6,9 @@ export const routesPath = {
   ORDER_PICKUP_SCREEN: 'OrderPickupScreen',
   ORDER_LIST_SCREEN: 'OrderListScreen',
   ORDER_DETAILS_SCREEN: 'OrderDetailsScreen',
+  DINING_SCREEN: 'DiningScreen',
+  DINING_VIEW_DEAILS_SCREEN: 'DiningViewDetailsScreen',
+
 };
 
 export const stacks = {

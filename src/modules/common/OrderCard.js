@@ -56,11 +56,18 @@ const ListText = ({name, value}) => {
   );
 };
 
-const OrderCard = ({isWaiting, isSuccess, isPickUp, isCancel, item}) => {
+const OrderCard = ({
+  isWaiting,
+  isSuccess,
+  isPickUp,
+  isCancel,
+  item,
+  handleUpdateStatus,
+}) => {
   const navigation = useNavigation();
   const handleViewDetails = () => {
     navigation.navigate(routesPath.ORDER_DETAILS_SCREEN, {
-      orderId: item?.OrderID,
+      orderId: item && item?.OrderID,
     });
   };
   return (
@@ -81,27 +88,44 @@ const OrderCard = ({isWaiting, isSuccess, isPickUp, isCancel, item}) => {
 
       {isWaiting && (
         <Flex row>
-          <Button types={'secondary'} flex={1} overrideStyle={styles.leftBtn}>
+          <Button
+            onClick={() => {
+              handleUpdateStatus(5, item?.OrderID);
+            }}
+            types={'secondary'}
+            flex={1}
+            overrideStyle={styles.leftBtn}>
             REJECT
           </Button>
-          <Button flex={1}>ACCEPT</Button>
+          <Button
+            onClick={() => {
+              handleUpdateStatus(6, item?.OrderID);
+            }}
+            flex={1}>
+            ACCEPT
+          </Button>
         </Flex>
       )}
       {isPickUp && (
         <Flex center>
-          <Button width={150}>PICKUP</Button>
+          <Button
+            onClick={() => {
+              handleUpdateStatus(3, item?.OrderID);
+            }}
+            width={150}>
+            PICKUP
+          </Button>
         </Flex>
       )}
       {isSuccess && (
         <Flex center>
-          <Text
-            transform={'uppercase'}
-            size={12}
-            overrideStyle={styles.success}
-            bold
-            color="success">
-            {item?.LiveStatus}
-          </Text>
+          <Button
+            onClick={() => {
+              handleUpdateStatus(4, item?.OrderID);
+            }}
+            width={150}>
+            DELIVERED
+          </Button>
         </Flex>
       )}
       {isCancel && (

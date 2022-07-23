@@ -1,39 +1,41 @@
 import {useFocusEffect} from '@react-navigation/native';
-import React, {useCallback} from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Flex from '../../uikit/Flex/Flex';
 import {WHITE} from '../../uikit/UikitUtils/colors';
 import HomePlaceHolder from '../common/HomePlaceHolder';
-import OrderCard from '../common/OrderCard';
-import {getAdminMasterOrderMiddleWare} from '../orderwaitingmodule/store/orderWaitingMiddleware';
+import DiningCard from './DiningCard';
+import {getDiningMiddleWare} from './store/diningMiddleWare';
 
 const styles = StyleSheet.create({
   flatListOverAll: {
     paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingVertical: 20,
   },
   overAll: {
     backgroundColor: WHITE,
   },
 });
-
-const OrderCancelListScreen = () => {
+const DiningScreen = () => {
   const dispatch = useDispatch();
-
+  const [isLoader, setLoader] = useState(true);
   useFocusEffect(
     useCallback(() => {
-      dispatch(getAdminMasterOrderMiddleWare({code: '4'}));
+      setLoader(true);
+      dispatch(getDiningMiddleWare()).then(() => {
+        setLoader(false);
+      });
     }, []),
   );
 
-  const {isLoading, data} = useSelector(({getAdminMasterOrderReducers}) => {
+  const {data} = useSelector(({getDiningReducers}) => {
     return {
-      isLoading: getAdminMasterOrderReducers.isLoading,
-      data: getAdminMasterOrderReducers.data,
+      data: getDiningReducers.data,
     };
   });
-  if (isLoading) {
+
+  if (isLoader) {
     return <HomePlaceHolder />;
   }
   return (
@@ -45,7 +47,7 @@ const OrderCancelListScreen = () => {
         keyExtractor={(_item, index) => index.toString()}
         renderItem={({item, index}) => (
           <View style={{marginBottom: index === data.length - 1 ? 40 : 8}}>
-            <OrderCard isCancel item={item} />
+            <DiningCard item={item} />
           </View>
         )}
       />
@@ -53,4 +55,4 @@ const OrderCancelListScreen = () => {
   );
 };
 
-export default OrderCancelListScreen;
+export default DiningScreen;

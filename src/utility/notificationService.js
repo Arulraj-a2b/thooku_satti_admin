@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import PushNotification from 'react-native-push-notification';
 
 export const handleNotification = message => {
-  PushNotification.cancelAllLocalNotifications();
+  // PushNotification.cancelAllLocalNotifications();
   PushNotification.localNotification({
     channelId: 'fcm_fallback_notification_channel',
     title: message.notification.title,
@@ -26,7 +26,6 @@ export async function requestUserPermission() {
   }
 }
 
-
 const getFcmToken = async () => {
   let fcmToken = await AsyncStorage.getItem('fcmToken');
   console.log('new fcmToken', fcmToken);
@@ -44,8 +43,12 @@ const getFcmToken = async () => {
 };
 
 export const notificationListener = async navigation => {
-  messaging().onNotificationOpenedApp(_remoteMessage => {
-    // console.log('_remoteMessage', remoteMessage);
+  messaging().onNotificationOpenedApp(remoteMessage => {
+    if (remoteMessage && remoteMessage.data) {
+      navigation.navigate(remoteMessage.data?.route, {
+        orderId: remoteMessage.data?.booking_id,
+      });
+    }
   });
   messaging().onMessage(async remoteMessage => {
     handleNotification(remoteMessage);
@@ -53,19 +56,36 @@ export const notificationListener = async navigation => {
   messaging()
     .getInitialNotification()
     .then(res => {
-      if (res) {
-        if (res.data) {
-          if (res.data?.route) {
-            const routePath = res.data?.route;
-            if (res && res.data && res.data?.booking_id) {
-              navigation.navigate(routePath, {
-                booking_id: res.data?.booking_id,
-              });
-            } else {
-              navigation.navigate(routePath);
-            }
-          }
-        }
+      if (res && res.data) {
+        navigation.navigate(res.data?.route, {
+          orderId: res.data?.booking_id,
+        });
       }
     });
+};
+
+export const localNotificationNavigate = (navigation, dispatch) => {
+  PushNotification.configure({
+    onNotification: function (notification) {
+      if (notification && notification.userInteraction) {
+        navigation.navigate(notification.data?.route, {
+          orderId: notification.data?.booking_id,
+        });
+      }
+      // else if (
+      //   navigationRef.current.getCurrentRoute().name === 'MyOrderScreen' &&
+      //   notification &&
+      //   notification.userInteraction === false
+      // ) {
+      //   dispatch(getUpComingOrderMiddleWare());
+      // }
+    },
+    permissions: {
+      alert: true,
+      badge: true,
+      sound: true,
+    },
+    popInitialNotification: true,
+    requestPermissions: true,
+  });
 };

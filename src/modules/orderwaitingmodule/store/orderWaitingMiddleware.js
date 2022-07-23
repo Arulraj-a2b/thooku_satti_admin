@@ -1,9 +1,14 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
-import {GET_ORDERS, GET_ORDER_DETAILS} from '../../../actions/actions';
+import {
+  GET_ORDERS,
+  GET_ORDER_DETAILS,
+  ORDER_STATUS_UPDATE,
+} from '../../../actions/actions';
 import {
   getAdminMasterOrderApi,
   getOrderDetailsApi,
+  orderStatusUpdateApi,
 } from '../../../routes/apiRoutes';
 import Toast from '../../../uikit/Toast/Toast';
 
@@ -33,6 +38,23 @@ export const getAdminMasterOrderMiddleWare = createAsyncThunk(
         params: {
           code,
         },
+      });
+      return data;
+    } catch (error) {
+      Toast(error.response.data[0].Message, 'error');
+      const typedError = error;
+      return rejectWithValue(typedError);
+    }
+  },
+);
+
+export const orderStatusUpdateMiddleWare = createAsyncThunk(
+  ORDER_STATUS_UPDATE,
+  async ({code, OrderID}, {rejectWithValue}) => {
+    try {
+      const {data} = await axios.post(orderStatusUpdateApi, {
+        code,
+        OrderID,
       });
       return data;
     } catch (error) {

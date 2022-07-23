@@ -6,6 +6,7 @@ import LoginScreen from '../modules/loginmodule/LoginScreen';
 import SideNavigation from './SideNavigation';
 import OrderDetailsScreen from '../modules/orderdetailsmodule/OrderDetailsScreen';
 import Header from './Header';
+import DiningViewDetailsScreen from '../modules/diningmodule/DiningViewDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,10 +32,29 @@ const MainNavigator = () => {
       />
       <Stack.Screen
         options={{
-          header: props => <Header props={props} isMenu={false}/>,
+          header: props => (
+            <Header
+              backPath={routesPath.ALL_SCREEN}
+              props={props}
+              isMenu={false}
+            />
+          ),
         }}
         name={routesPath.ORDER_DETAILS_SCREEN}
         component={OrderDetailsScreen}
+      />
+      <Stack.Screen
+        options={{
+          header: props => (
+            <Header
+              backPath={routesPath.ALL_SCREEN}
+              props={props}
+              isMenu={false}
+            />
+          ),
+        }}
+        name={routesPath.DINING_VIEW_DEAILS_SCREEN}
+        component={DiningViewDetailsScreen}
       />
     </Stack.Navigator>
   );
