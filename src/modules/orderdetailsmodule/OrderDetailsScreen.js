@@ -126,8 +126,10 @@ const OrderDetailsScreen = () => {
 
           <View style={styles.hrLine} />
           <Flex row overrideStyle={{marginVertical: 8}}>
-            <Text bold>Status:{'  '}</Text>
-            <Text>{data[0].LiveStatus}</Text>
+            <Text bold>Status: </Text>
+            <Text overrideStyle={{width: '88%'}}>
+              {data[0].LiveStatus}
+            </Text>
           </Flex>
           <View style={styles.hrLine} />
           <Text color="gary" bold overrideStyle={styles.billTitle}>

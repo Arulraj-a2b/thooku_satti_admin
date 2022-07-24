@@ -65,7 +65,7 @@ const OrderSuccessScreen = () => {
         data={data}
         keyExtractor={(_item, index) => index.toString()}
         renderItem={({item, index}) => (
-          <View style={{marginBottom: index === data.length - 1 ? 40 : 8}}>
+          <View style={{marginBottom: index === data.length - 1 ? 40 : 0}}>
             <OrderCard
               isSuccess
               item={item}

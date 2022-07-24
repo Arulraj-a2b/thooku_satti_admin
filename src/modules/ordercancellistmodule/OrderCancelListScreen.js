@@ -1,6 +1,6 @@
 import {useFocusEffect} from '@react-navigation/native';
 import React, {useCallback} from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Flex from '../../uikit/Flex/Flex';
 import {WHITE} from '../../uikit/UikitUtils/colors';
@@ -44,7 +44,7 @@ const OrderCancelListScreen = () => {
         data={data}
         keyExtractor={(_item, index) => index.toString()}
         renderItem={({item, index}) => (
-          <View style={{marginBottom: index === data.length - 1 ? 40 : 8}}>
+          <View style={{marginBottom: index === data.length - 1 ? 40 : 0}}>
             <OrderCard isCancel item={item} />
           </View>
         )}

@@ -124,7 +124,7 @@ const OrderCard = ({
               handleUpdateStatus(4, item?.OrderID);
             }}
             width={150}>
-            DELIVERED
+            DELIVERY
           </Button>
         </Flex>
       )}

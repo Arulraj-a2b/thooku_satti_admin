@@ -32,7 +32,7 @@ const BottomTab = () => {
           headerShown: false,
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name={routesPath.ORDER_PREPARATION_SCREEN}
         component={OrderPickupScreen}
         options={{
@@ -44,7 +44,7 @@ const BottomTab = () => {
           ),
           headerShown: false,
         }}
-      />
+      /> */}
       <Tab.Screen
         name={routesPath.ORDER_PICKUP_SCREEN}
         component={OrderSuccessScreen}

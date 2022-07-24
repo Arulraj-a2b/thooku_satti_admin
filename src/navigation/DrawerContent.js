@@ -84,26 +84,26 @@ const DrawerContent = props => {
       title: 'Waiting List',
       icon: (
         <View style={{position: 'relative', right: 2}}>
-          <SvgWaiting width={20} height={20} fill={GRAY_6} />
+          <SvgWaiting width={22} height={20} fill={GRAY_6} />
         </View>
       ),
     },
-    {
-      route: () => {
-        props.navigation.navigate(routesPath.ORDER_PREPARATION_SCREEN);
-      },
-      title: 'PickUp List',
-      icon: (
-        <View style={{position: 'relative', right: 5}}>
-          <SvgOrderPickup width={24} height={22} fill={GRAY_6} />
-        </View>
-      ),
-    },
+    // {
+    //   route: () => {
+    //     props.navigation.navigate(routesPath.ORDER_PREPARATION_SCREEN);
+    //   },
+    //   title: 'PickUp List',
+    //   icon: (
+    //     <View style={{position: 'relative', right: 5}}>
+    //       <SvgOrderPickup width={24} height={22} fill={GRAY_6} />
+    //     </View>
+    //   ),
+    // },
     {
       route: () => {
         props.navigation.navigate(routesPath.ORDER_PICKUP_SCREEN);
       },
-      title: 'Delivered List',
+      title: 'Delivery List',
       icon: (
         <View style={{position: 'relative', right: 2}}>
           <SvgOrderSuccess width={18} height={18} fill={GRAY_6} />
