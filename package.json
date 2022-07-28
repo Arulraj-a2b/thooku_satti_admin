@@ -34,6 +34,7 @@
     "react-native": "0.69.1",
     "react-native-gesture-handler": "^2.5.0",
     "react-native-linear-gradient": "^2.6.2",
+    "react-native-modal": "^13.0.1",
     "react-native-network-logger": "^1.12.0",
     "react-native-push-notification": "^8.1.1",
     "react-native-raw-bottom-sheet": "^2.2.0",

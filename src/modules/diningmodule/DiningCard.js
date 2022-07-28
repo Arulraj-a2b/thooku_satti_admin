@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Linking} from 'react-native';
+import Button from '../../uikit/Button/Button';
 import Card from '../../uikit/Card/Card';
 import Flex from '../../uikit/Flex/Flex';
 import Text from '../../uikit/Text/Text';
@@ -38,7 +39,8 @@ export const ListText = ({name, value}) => {
   );
 };
 
-const DiningCard = ({item}) => {
+const DiningCard = ({item, handleAccept,handleRejectModal}) => {
+  const checkStatus = item.BookingStatus === 'Pending' ? true : false;
   return (
     <Card overrideStyle={styles.overAll}>
       <ListText name="Customer Name" value={item?.Name} />
@@ -65,7 +67,7 @@ const DiningCard = ({item}) => {
         <ListText name="Phonepe Number" value={item?.PhoePayNo} />
       )}
       {!isEmpty(item?.Notes) && <ListText name="Notes" value={item?.Notes} />}
-      {!isEmpty(item.BilluploadStatus) && (
+      {!checkStatus && !isEmpty(item.BilluploadStatus) && (
         <ListText name="Bill Status" value={item?.BilluploadStatus} />
       )}
       {!isEmpty(item?.BillRefno) && (
@@ -78,7 +80,7 @@ const DiningCard = ({item}) => {
         />
       )}
 
-      {!isEmpty(item.BillImagePath) && (
+      {!checkStatus && !isEmpty(item.BillImagePath) && (
         <Flex row overrideStyle={{marginBottom: 16}}>
           <Text bold overrideStyle={styles.nameStyle}>
             Download Bill
@@ -90,6 +92,18 @@ const DiningCard = ({item}) => {
               {item.BillImagePath}
             </Text>
           </TouchableOpacity>
+        </Flex>
+      )}
+      {checkStatus && (
+        <Flex row middle overrideStyle={{marginTop: 16}}>
+          <Button onClick={()=>handleRejectModal(item.BookingID)} types={'secondary'} overrideStyle={{marginRight: 8}}>
+            Reject
+          </Button>
+          <Button
+            overrideStyle={{marginLeft: 8}}
+            onClick={() => handleAccept(item.BookingID)}>
+            Accept
+          </Button>
         </Flex>
       )}
     </Card>

@@ -7,3 +7,5 @@ export const getOrderDetailsApi = fetchUrl('Mobapi/GetOrderDetails');
 export const orderStatusUpdateApi = fetchUrl('Mobapi/OrderStatusUpdate');
 export const getDiningApi = fetchUrl(`Mobapi/GetAllDining`);
 export const getDiningDetailsApi = fetchUrl(`Mobapi/GetSpecificDining`);
+
+export const updateDiningStatusApi = fetchUrl(`Mobapi/UpdateDiningStatus`);
