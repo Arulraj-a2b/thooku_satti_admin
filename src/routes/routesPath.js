@@ -8,7 +8,6 @@ export const routesPath = {
   ORDER_DETAILS_SCREEN: 'OrderDetailsScreen',
   DINING_SCREEN: 'DiningScreen',
   DINING_VIEW_DEAILS_SCREEN: 'DiningViewDetailsScreen',
-
 };
 
 export const stacks = {
