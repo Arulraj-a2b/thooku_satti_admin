@@ -39,8 +39,9 @@ export const ListText = ({name, value}) => {
   );
 };
 
-const DiningCard = ({item, handleAccept,handleRejectModal}) => {
-  const checkStatus = item.BookingStatus === 'Pending' ? true : false;
+const DiningCard = ({item, handleAccept, handleRejectModal}) => {
+  const checkStatus =
+    item.BookingStatus.toLowerCase() === 'accepted' ? true : false;
   return (
     <Card overrideStyle={styles.overAll}>
       <ListText name="Customer Name" value={item?.Name} />
@@ -67,7 +68,7 @@ const DiningCard = ({item, handleAccept,handleRejectModal}) => {
         <ListText name="Phonepe Number" value={item?.PhoePayNo} />
       )}
       {!isEmpty(item?.Notes) && <ListText name="Notes" value={item?.Notes} />}
-      {!checkStatus && !isEmpty(item.BilluploadStatus) && (
+      {checkStatus && !isEmpty(item.BilluploadStatus) && (
         <ListText name="Bill Status" value={item?.BilluploadStatus} />
       )}
       {!isEmpty(item?.BillRefno) && (
@@ -80,7 +81,7 @@ const DiningCard = ({item, handleAccept,handleRejectModal}) => {
         />
       )}
 
-      {!checkStatus && !isEmpty(item.BillImagePath) && (
+      {checkStatus && !isEmpty(item.BillImagePath) && (
         <Flex row overrideStyle={{marginBottom: 16}}>
           <Text bold overrideStyle={styles.nameStyle}>
             Download Bill
@@ -94,9 +95,12 @@ const DiningCard = ({item, handleAccept,handleRejectModal}) => {
           </TouchableOpacity>
         </Flex>
       )}
-      {checkStatus && (
+      {!checkStatus && (
         <Flex row middle overrideStyle={{marginTop: 16}}>
-          <Button onClick={()=>handleRejectModal(item.BookingID)} types={'secondary'} overrideStyle={{marginRight: 8}}>
+          <Button
+            onClick={() => handleRejectModal(item.BookingID)}
+            types={'secondary'}
+            overrideStyle={{marginRight: 8}}>
             Reject
           </Button>
           <Button

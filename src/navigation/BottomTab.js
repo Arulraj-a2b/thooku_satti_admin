@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {routesPath} from '../routes/routesPath';
 import SvgWaiting from '../icons/SvgWaiting';
 import TabBarIcon from './TabBarIcon';
-import {GRAY_4, PRIMARY} from '../uikit/UikitUtils/colors';
+import {GRAY_4, PRIMARY, WHITE} from '../uikit/UikitUtils/colors';
 import SvgOrderPickup from '../icons/SvgOrderPickup';
 import SvgOrderSuccess from '../icons/SvgOrderSuccess';
 import SvgOrderCancel from '../icons/SvgOrderCancel';
@@ -18,7 +18,7 @@ const Tab = createBottomTabNavigator();
 
 const BottomTab = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator sceneContainerStyle={{backgroundColor:WHITE}}>
       <Tab.Screen
         name={routesPath.ORDER_WAITING_SCREEN}
         component={OrderWaitingScreen}
