@@ -6,7 +6,8 @@ import SplashScreen from 'react-native-splash-screen';
 import {useDispatch} from 'react-redux';
 import {routesPath} from '../routes/routesPath';
 
-export const BASE_URL = 'https://foodapp.appsure.co.in/api/';
+// export const BASE_URL = 'https://foodapp.appsure.co.in/api/'; // staging
+export const BASE_URL = 'https://mobileorder.dindigulthookusatti.com/api/'; // production
 
 export const fetchUrl = url => {
   const result = `${BASE_URL}${url}`;
@@ -23,7 +24,7 @@ export const useAuthCheck = setLoader => {
       if (userData) {
         userData = JSON.parse(userData);
         if (userData.loggedIn) {
-          console.log('userData', userData.SessionID);
+          // console.log('userData', userData.SessionID);
           axios.defaults.headers.common['token'] = userData.SessionID;
           navigation.navigate(routesPath.ALL_SCREEN);
           // dispacth(getCartDetailsMiddleWare());
