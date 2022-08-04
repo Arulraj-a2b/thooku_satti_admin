@@ -72,6 +72,7 @@ const OrderDetailsScreen = () => {
       data: getOrderDetailsReducers.data,
     };
   });
+
   if (isLoading) {
     return <HomePlaceHolder />;
   }
@@ -90,7 +91,7 @@ const OrderDetailsScreen = () => {
               style={{
                 borderLeftColor: BORDER_COLOR,
                 borderLeftWidth: 2,
-                height: 55,
+                height: 72,
                 position: 'absolute',
                 alignContent: 'center',
                 justifyContent: 'center',
@@ -102,11 +103,23 @@ const OrderDetailsScreen = () => {
             <Flex row overrideStyle={styles.hotelName}>
               <SvgLocation3 fill={GRAY_1} />
               <Flex overrideStyle={{marginLeft: 8}}>
-                <Text color="theme" bold size={16}>
+                <Text
+                  color="theme"
+                  bold
+                  size={16}
+                  numberOfLines={1}
+                  ellipsizeMode="tail">
                   {data[0].HotelName}
                 </Text>
-                <Text size={12} color="gray">
+                <Text
+                  size={12}
+                  color="gray"
+                  numberOfLines={1}
+                  ellipsizeMode="tail">
                   {data[0].Address}
+                </Text>
+                <Text size={12} color="gray">
+                  {data[0].OrderedDate}
                 </Text>
               </Flex>
             </Flex>
@@ -127,9 +140,7 @@ const OrderDetailsScreen = () => {
           <View style={styles.hrLine} />
           <Flex row overrideStyle={{marginVertical: 8}}>
             <Text bold>Status: </Text>
-            <Text overrideStyle={{width: '88%'}}>
-              {data[0].LiveStatus}
-            </Text>
+            <Text overrideStyle={{width: '88%'}}>{data[0].LiveStatus}</Text>
           </Flex>
           <View style={styles.hrLine} />
           <Text color="gary" bold overrideStyle={styles.billTitle}>
