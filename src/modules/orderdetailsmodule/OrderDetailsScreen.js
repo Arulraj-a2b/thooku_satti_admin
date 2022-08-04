@@ -137,13 +137,13 @@ const OrderDetailsScreen = () => {
           <View style={styles.hrLine} />
           <Flex row overrideStyle={{marginVertical: 8}}>
             <Text bold overrideStyle={{width: 80}}>
-              Order Date:
+              Order Date
             </Text>
             <Text overrideStyle={{width: '88%'}}>{data[0].OrderedDate}</Text>
           </Flex>
           <Flex row overrideStyle={{marginBottom: 8}}>
             <Text bold overrideStyle={{width: 80}}>
-              Status:
+              Status
             </Text>
             <Text overrideStyle={{width: '88%'}}>{data[0].LiveStatus}</Text>
           </Flex>
