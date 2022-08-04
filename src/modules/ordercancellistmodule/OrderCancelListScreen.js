@@ -3,6 +3,7 @@ import React, {useCallback} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Flex from '../../uikit/Flex/Flex';
+import Text from '../../uikit/Text/Text';
 import {WHITE} from '../../uikit/UikitUtils/colors';
 import HomePlaceHolder from '../common/HomePlaceHolder';
 import OrderCard from '../common/OrderCard';
@@ -33,12 +34,19 @@ const OrderCancelListScreen = () => {
       data: getAdminMasterOrderReducers.data,
     };
   });
+
   if (isLoading) {
     return <HomePlaceHolder />;
   }
+
   return (
     <Flex overrideStyle={styles.overAll}>
       <FlatList
+        ListEmptyComponent={() => (
+          <Flex center middle overrideStyle={{paddingTop: 30}}>
+            <Text color="gray">Not found</Text>
+          </Flex>
+        )}
         onEndReachedThreshold={0.1}
         style={styles.flatListOverAll}
         data={data}

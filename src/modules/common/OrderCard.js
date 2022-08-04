@@ -70,11 +70,13 @@ const OrderCard = ({
       orderId: item && item?.OrderID,
     });
   };
+  
   return (
     <Card overrideStyle={styles.overAll}>
       <ListText name="Customer Name" value={item?.CustomerName} />
       <ListText name="Customer Phone" value={item?.Mobileno} />
       <ListText name="Customer Address" value={item?.DeliveryAddress} />
+      <ListText name="Order Date" value={item?.OrderedDate} />
       <ListText name="Live Status" value={item?.LiveStatus} />
       <TouchableOpacity onPress={handleViewDetails}>
         <Text

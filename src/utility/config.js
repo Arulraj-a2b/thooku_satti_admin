@@ -3,7 +3,6 @@ import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
-import {useDispatch} from 'react-redux';
 import {routesPath} from '../routes/routesPath';
 
 // export const BASE_URL = 'https://foodapp.appsure.co.in/api/'; // staging
@@ -16,7 +15,6 @@ export const fetchUrl = url => {
 
 export const useAuthCheck = setLoader => {
   const navigation = useNavigation();
-  const dispacth = useDispatch();
   const authUser = async () => {
     try {
       let userData = await AsyncStorage.getItem('userData');
@@ -27,7 +25,6 @@ export const useAuthCheck = setLoader => {
           // console.log('userData', userData.SessionID);
           axios.defaults.headers.common['token'] = userData.SessionID;
           navigation.navigate(routesPath.ALL_SCREEN);
-          // dispacth(getCartDetailsMiddleWare());
           setTimeout(() => {
             SplashScreen.hide();
           }, 1000);

@@ -118,9 +118,6 @@ const OrderDetailsScreen = () => {
                   ellipsizeMode="tail">
                   {data[0].Address}
                 </Text>
-                <Text size={12} color="gray">
-                  {data[0].OrderedDate}
-                </Text>
               </Flex>
             </Flex>
 
@@ -139,7 +136,15 @@ const OrderDetailsScreen = () => {
 
           <View style={styles.hrLine} />
           <Flex row overrideStyle={{marginVertical: 8}}>
-            <Text bold>Status: </Text>
+            <Text bold overrideStyle={{width: 80}}>
+              Order Date:
+            </Text>
+            <Text overrideStyle={{width: '88%'}}>{data[0].OrderedDate}</Text>
+          </Flex>
+          <Flex row overrideStyle={{marginBottom: 8}}>
+            <Text bold overrideStyle={{width: 80}}>
+              Status:
+            </Text>
             <Text overrideStyle={{width: '88%'}}>{data[0].LiveStatus}</Text>
           </Flex>
           <View style={styles.hrLine} />

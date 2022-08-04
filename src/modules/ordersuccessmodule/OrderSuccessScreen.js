@@ -4,6 +4,7 @@ import {FlatList, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Flex from '../../uikit/Flex/Flex';
 import Loader from '../../uikit/Loader/Loader';
+import Text from '../../uikit/Text/Text';
 import {WHITE} from '../../uikit/UikitUtils/colors';
 import HomePlaceHolder from '../common/HomePlaceHolder';
 import OrderCard from '../common/OrderCard';
@@ -42,6 +43,7 @@ const OrderSuccessScreen = () => {
       data: getAdminMasterOrderReducers.data,
     };
   });
+
   const handleUpdateStatus = (value, id) => {
     setLoader(true);
     dispatch(orderStatusUpdateMiddleWare({code: value, OrderID: id}))
@@ -53,13 +55,20 @@ const OrderSuccessScreen = () => {
         setLoader(false);
       });
   };
+
   if (isIntitalLoader) {
     return <HomePlaceHolder />;
   }
+
   return (
     <Flex overrideStyle={styles.overAll}>
       {(isLoader || isLoading) && <Loader />}
       <FlatList
+        ListEmptyComponent={() => (
+          <Flex center middle overrideStyle={{paddingTop: 30}}>
+            <Text color="gray">Not found</Text>
+          </Flex>
+        )}
         onEndReachedThreshold={0.1}
         style={styles.flatListOverAll}
         data={data}
