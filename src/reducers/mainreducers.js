@@ -3,12 +3,17 @@ import {
   getOrderDetailsReducers,
   getAdminMasterOrderReducers,
 } from '../modules/orderwaitingmodule/store/orderWaitingReducer';
-import {getDiningReducers,getDiningDetailsReducers} from '../modules/diningmodule/store/diningReducer';
+import {
+  getDiningReducers,
+  getDiningDetailsReducers,
+} from '../modules/diningmodule/store/diningReducer';
+import {getMarketOrderReducers} from '../modules/marketmodule/store/marketOrderScreenReducer';
 
 export const reducers = {
   loginReducers,
   getOrderDetailsReducers,
   getAdminMasterOrderReducers,
   getDiningReducers,
-  getDiningDetailsReducers
+  getDiningDetailsReducers,
+  getMarketOrderReducers,
 };

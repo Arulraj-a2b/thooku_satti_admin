@@ -7,6 +7,7 @@ import Text from '../../uikit/Text/Text';
 import {WHITE} from '../../uikit/UikitUtils/colors';
 import HomePlaceHolder from '../common/HomePlaceHolder';
 import OrderCard from '../common/OrderCard';
+import { height } from '../orderwaitingmodule/OrderWaitingScreen';
 import {getAdminMasterOrderMiddleWare} from '../orderwaitingmodule/store/orderWaitingMiddleware';
 
 const styles = StyleSheet.create({
@@ -43,13 +44,13 @@ const OrderCancelListScreen = () => {
     <Flex overrideStyle={styles.overAll}>
       <FlatList
         ListEmptyComponent={() => (
-          <Flex center middle overrideStyle={{paddingTop: 30}}>
+          <Flex center middle overrideStyle={{height: height - 200}}>
             <Text color="gray">Not found</Text>
           </Flex>
         )}
         onEndReachedThreshold={0.1}
         style={styles.flatListOverAll}
-        data={data}
+        data={typeof data === 'string' ? [] : data}
         keyExtractor={(_item, index) => index.toString()}
         renderItem={({item, index}) => (
           <View style={{marginBottom: index === data.length - 1 ? 40 : 0}}>

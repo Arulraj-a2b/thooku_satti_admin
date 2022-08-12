@@ -1,6 +1,4 @@
 import React, {useEffect} from 'react';
-import Flex from '../../uikit/Flex/Flex';
-import Text from '../../uikit/Text/Text';
 import {useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {ScrollView, StyleSheet, View} from 'react-native';
@@ -10,6 +8,8 @@ import {INDIAN_RUPEE} from '../../uikit/UikitUtils/constants';
 import {isFinancial} from '../../uikit/UikitUtils/helpers';
 import {getOrderDetailsMiddleWare} from '../orderwaitingmodule/store/orderWaitingMiddleware';
 import HomePlaceHolder from '../common/HomePlaceHolder';
+import Flex from '../../uikit/Flex/Flex';
+import Text from '../../uikit/Text/Text';
 
 const styles = StyleSheet.create({
   overAll: {

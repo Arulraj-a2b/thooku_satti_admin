@@ -7,6 +7,7 @@ import SideNavigation from './SideNavigation';
 import OrderDetailsScreen from '../modules/orderdetailsmodule/OrderDetailsScreen';
 import Header from './Header';
 import DiningViewDetailsScreen from '../modules/diningmodule/DiningViewDetailsScreen';
+import MarketOrderViewScreen from '../modules/marketmodule/MarketOrderViewScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +56,19 @@ const MainNavigator = () => {
         }}
         name={routesPath.DINING_VIEW_DEAILS_SCREEN}
         component={DiningViewDetailsScreen}
+      />
+      <Stack.Screen
+        options={{
+          header: props => (
+            <Header
+              backPath={routesPath.ALL_SCREEN}
+              props={props}
+              isMenu={false}
+            />
+          ),
+        }}
+        name={routesPath.MARKET_ORDER_VIEW_SCREEN}
+        component={MarketOrderViewScreen}
       />
     </Stack.Navigator>
   );

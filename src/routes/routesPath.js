@@ -8,6 +8,7 @@ export const routesPath = {
   ORDER_DETAILS_SCREEN: 'OrderDetailsScreen',
   DINING_SCREEN: 'DiningScreen',
   DINING_VIEW_DEAILS_SCREEN: 'DiningViewDetailsScreen',
+  MARKET_ORDER_VIEW_SCREEN: 'MarketOrderViewScreen',
 };
 
 export const stacks = {

@@ -6,3 +6,5 @@ export const ORDER_STATUS_UPDATE = 'my_order/ORDER_STATUS_UPDATE';
 export const GET_ALL_DINING = 'dining/GET_ALL_DINING';
 export const GET_DINING_DETAILS = 'dining/GET_DINING_DETAILS';
 export const DINING_STATUS_UPDATE = 'dining/DINING_STATUS_UPDATE';
+
+export const GET_MARKET_ORDER = 'market/GET_MARKET_ORDER';

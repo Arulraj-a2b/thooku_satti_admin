@@ -1,6 +1,6 @@
 import {useFocusEffect} from '@react-navigation/native';
 import React, {useCallback, useState} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {Dimensions, FlatList, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Flex from '../../uikit/Flex/Flex';
 import Loader from '../../uikit/Loader/Loader';
@@ -13,6 +13,7 @@ import {
   orderStatusUpdateMiddleWare,
 } from './store/orderWaitingMiddleware';
 
+export const {height} = Dimensions.get('screen');
 const styles = StyleSheet.create({
   flatListOverAll: {
     paddingHorizontal: 20,
@@ -43,7 +44,6 @@ const OrderWaitingScreen = () => {
       isLoading: getAdminMasterOrderReducers.isLoading,
     };
   });
-
   const handleUpdateStatus = (value, id) => {
     setLoader(true);
     dispatch(orderStatusUpdateMiddleWare({code: value, OrderID: id}))
@@ -65,13 +65,13 @@ const OrderWaitingScreen = () => {
       {(isLoader || isLoading) && <Loader />}
       <FlatList
         ListEmptyComponent={() => (
-          <Flex center middle overrideStyle={{paddingTop: 30}}>
+          <Flex center middle overrideStyle={{height: height - 200}} flex={1}>
             <Text color="gray">Not found</Text>
           </Flex>
         )}
         onEndReachedThreshold={0.1}
         style={styles.flatListOverAll}
-        data={data}
+        data={typeof data === 'string' ? [] : data}
         keyExtractor={(_item, index) => index.toString()}
         renderItem={({item, index}) => (
           <View style={{marginBottom: index === data.length - 1 ? 40 : 0}}>

@@ -5,10 +5,12 @@ import {FlatList, Keyboard, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Flex from '../../uikit/Flex/Flex';
 import Loader from '../../uikit/Loader/Loader';
+import Text from '../../uikit/Text/Text';
 import Toast from '../../uikit/Toast/Toast';
 import {WHITE} from '../../uikit/UikitUtils/colors';
 import {isEmpty} from '../../uikit/UikitUtils/validators';
 import HomePlaceHolder from '../common/HomePlaceHolder';
+import {height} from '../orderwaitingmodule/OrderWaitingScreen';
 import DiningCard from './DiningCard';
 import RejectModal from './RejectModal';
 import {
@@ -114,9 +116,14 @@ const DiningScreen = () => {
       <Flex overrideStyle={styles.overAll}>
         {isStatusLoader && <Loader />}
         <FlatList
+          ListEmptyComponent={() => (
+            <Flex center middle overrideStyle={{height: height - 200}}>
+              <Text color="gray">Not found</Text>
+            </Flex>
+          )}
           onEndReachedThreshold={0.1}
           style={styles.flatListOverAll}
-          data={data}
+          data={typeof data === 'string' ? [] : data}
           keyExtractor={(_item, index) => index.toString()}
           renderItem={({item, index}) => (
             <View style={{marginBottom: index === data.length - 1 ? 40 : 8}}>
