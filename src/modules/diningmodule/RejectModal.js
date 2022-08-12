@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
   placeText: {
     marginTop: 8,
   },
+  inputText: {
+    textAlignVertical: 'top',
+  },
 });
 
 const RejectModal = ({open, close, formik}) => {
@@ -32,6 +35,10 @@ const RejectModal = ({open, close, formik}) => {
       <Card overrideStyle={styles.overAll}>
         <Flex>
           <InputText
+            overrideStyle={styles.inputText}
+            height={90}
+            maxLength={1000}
+            numberOfLines={3}
             types="normal"
             label={'Reject Reason'}
             required

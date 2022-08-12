@@ -118,7 +118,7 @@ const DiningScreen = () => {
         <FlatList
           ListEmptyComponent={() => (
             <Flex center middle overrideStyle={{height: height - 200}}>
-              <Text color="gray">Not found</Text>
+              <Text color="gray">Booking not found</Text>
             </Flex>
           )}
           onEndReachedThreshold={0.1}

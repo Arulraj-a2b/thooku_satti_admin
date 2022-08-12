@@ -8,3 +8,4 @@ export const GET_DINING_DETAILS = 'dining/GET_DINING_DETAILS';
 export const DINING_STATUS_UPDATE = 'dining/DINING_STATUS_UPDATE';
 
 export const GET_MARKET_ORDER = 'market/GET_MARKET_ORDER';
+export const UPDATE_MARKET_ORDER = 'market/UPDATE_MARKET_ORDER';
