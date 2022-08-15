@@ -40,25 +40,42 @@ const styles = StyleSheet.create({
   },
 });
 
-const ReportTable = ({data, handleViewDetails}) => {
-  const tableHead = [
-    'Order ID',
-    'Hotel Name',
-    'Customer Name',
-    'Status',
-    'Ordered Date',
-    'Mobile Number',
-  ];
+const ReportTable = ({data, handleViewDetails, reportType}) => {
+  const tableHead =
+    reportType === '1'
+      ? [
+          'Order ID',
+          'Hotel Name',
+          'Customer Name',
+          'Status',
+          'Ordered Date',
+          'Mobile Number',
+        ]
+      : [
+          'Order ID',
+          'Customer Name',
+          'Status',
+          'Ordered Date',
+          'Mobile Number',
+        ];
 
   const orderIdArray = data.map(list => {
-    return [
-      list.OrderID,
-      list.HotelName,
-      list.CustomerName,
-      list.LiveStatus,
-      list.OrderedDate,
-      list.Mobileno,
-    ];
+    return reportType === '1'
+      ? [
+          list.OrderID,
+          list.HotelName,
+          list.CustomerName,
+          list.LiveStatus,
+          list.OrderedDate,
+          list.Mobileno,
+        ]
+      : [
+          list.OrderID,
+          list.CustomerName,
+          list.LiveStatus,
+          list.OrderedDate,
+          list.Mobileno,
+        ];
   });
 
   const element = (data, handleViewDetails) => (

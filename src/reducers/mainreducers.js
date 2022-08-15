@@ -8,7 +8,7 @@ import {
   getDiningDetailsReducers,
 } from '../modules/diningmodule/store/diningReducer';
 import {getMarketOrderReducers} from '../modules/marketmodule/store/marketOrderScreenReducer';
-import {generateAdminReportReducers} from '../modules/reportmodule/store/reportReducer';
+import {generateAdminReportReducers,getHotelListReducers} from '../modules/reportmodule/store/reportReducer';
 
 export const reducers = {
   loginReducers,
@@ -17,5 +17,6 @@ export const reducers = {
   getDiningReducers,
   getDiningDetailsReducers,
   getMarketOrderReducers,
-  generateAdminReportReducers
+  generateAdminReportReducers,
+  getHotelListReducers
 };

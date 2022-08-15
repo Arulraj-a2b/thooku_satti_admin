@@ -6,10 +6,10 @@ import Flex from '../../uikit/Flex/Flex';
 import InputText from '../../uikit/InputText/InputText';
 import LabelWrapper from '../../uikit/InputText/LabelWrapper';
 import Text from '../../uikit/Text/Text';
-import { BORDER_COLOR } from '../../uikit/UikitUtils/colors';
+import {BORDER_COLOR} from '../../uikit/UikitUtils/colors';
 import {getDateString} from '../../uikit/UikitUtils/helpers';
 import {isEmpty} from '../../uikit/UikitUtils/validators';
-import {reportType,orderStatus} from './mock';
+import {orderStatus} from './mock';
 
 const styles = StyleSheet.create({
   dateStyle: {
@@ -36,7 +36,11 @@ const ReportFilter = ({
   showFromDate,
   showToDate,
   setStatus,
-  isStatus
+  isStatus,
+  isHotelName,
+  setHotelName,
+  hotelList,
+  reportType,
 }) => {
   return (
     <Flex overrideStyle={styles.overAll}>
@@ -82,6 +86,19 @@ const ReportFilter = ({
           onChange={formik.handleChange('orderID')}
         />
       </View>
+      {reportType === '1' && (
+        <View style={[styles.margin16, {zIndex: 10}]}>
+          <DropDown
+            labelKey="HotelName"
+            valueKey="HotelID"
+            label={'Hotel Name'}
+            value={isHotelName}
+            setValue={setHotelName}
+            data={hotelList}
+            listMode="MODAL"
+          />
+        </View>
+      )}
       <Button onClick={formik.handleSubmit} overrideStyle={styles.btnStyle}>
         Generate Report
       </Button>

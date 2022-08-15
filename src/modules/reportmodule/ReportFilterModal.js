@@ -30,7 +30,7 @@ const ReportFilterModal = ({
   close,
 }) => {
   return (
-    <Modal animationInTiming={0} animationIn="slideInLeft" isVisible={open}>
+    <Modal animationInTiming={0} animationIn='slideInDown' isVisible={open}>
       <Card overrideStyle={styles.overAll}>
         <TouchableOpacity style={styles.svgClose} onPress={close}>
           <SvgClose height={16} width={16} />

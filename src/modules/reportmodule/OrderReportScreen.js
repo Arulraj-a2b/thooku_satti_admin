@@ -1,10 +1,13 @@
 import {useFormik} from 'formik';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import {DateTimePickerAndroid} from '@react-native-community/datetimepicker';
 import {getDateString} from '../../uikit/UikitUtils/helpers';
-import {generateAdminReportMiddleWare} from './store/reportMiddleware';
+import {
+  generateAdminReportMiddleWare,
+  getHotelListMiddleWare,
+} from './store/reportMiddleware';
 import Loader from '../../uikit/Loader/Loader';
 import ReportTable from './ReportTable';
 import NormalOrderDetailsModal from './NormalOrderDetailsModal';
@@ -15,6 +18,8 @@ import SvgFilter from '../../icons/SvgFilter';
 import {BORDER_COLOR} from '../../uikit/UikitUtils/colors';
 import ReportFilterModal from './ReportFilterModal';
 import MarketOrderDetailsModal from './MarketOrderDetailsModal';
+import {useFocusEffect} from '@react-navigation/native';
+import {resetReport} from './store/reportReducer';
 
 const styles = StyleSheet.create({
   filterFlex: {
@@ -27,19 +32,35 @@ const styles = StyleSheet.create({
 
 const OrderReportScreen = ({reportType = '1'}) => {
   const [isStatus, setStatus] = useState('1');
+  const [isHotelName, setHotelName] = useState('');
   const [isDetails, setDetails] = useState(false);
   const [isOrderId, setOrderId] = useState('');
   const [isFilter, setFilter] = useState(false);
-
   const dispatch = useDispatch();
 
-  const {isLoading, data} = useSelector(({generateAdminReportReducers}) => {
-    return {
-      isLoading: generateAdminReportReducers.isLoading,
-      data: generateAdminReportReducers.data,
-    };
-  });
+  useEffect(() => {
+    if (reportType === '1') {
+      dispatch(getHotelListMiddleWare({LocationID: '1'}));
+    }
+  }, []);
 
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(resetReport());
+    }, []),
+  );
+
+  const {isLoading, data, hotelListLoader, hotelList} = useSelector(
+    ({generateAdminReportReducers, getHotelListReducers}) => {
+      return {
+        isLoading: generateAdminReportReducers.isLoading,
+        data: generateAdminReportReducers.data,
+        hotelListLoader: getHotelListReducers.isLoading,
+        hotelList: getHotelListReducers.data,
+      };
+    },
+  );
+console.log('data',);
   const handleSubmit = value => {
     dispatch(
       generateAdminReportMiddleWare({
@@ -49,7 +70,7 @@ const OrderReportScreen = ({reportType = '1'}) => {
         StatusCode: value.status,
         PagenationNo: 1,
         OrderID: value.orderID,
-        HotelID: '',
+        HotelID: value.hotelID,
       }),
     ).then(() => {
       setFilter(false);
@@ -62,6 +83,7 @@ const OrderReportScreen = ({reportType = '1'}) => {
       fromDate: new Date(),
       toDate: new Date(),
       orderID: '',
+      hotelID: '',
     },
     onSubmit: handleSubmit,
   });
@@ -69,6 +91,10 @@ const OrderReportScreen = ({reportType = '1'}) => {
   useEffect(() => {
     formik.setFieldValue('status', isStatus);
   }, [isStatus]);
+
+  useEffect(() => {
+    formik.setFieldValue('hotelID', isHotelName);
+  }, [isHotelName]);
 
   const fromDateChange = (_event, selectedDate) => {
     const currentDate = selectedDate;
@@ -104,9 +130,10 @@ const OrderReportScreen = ({reportType = '1'}) => {
     setOrderId(id);
     setDetails(true);
   };
+
   return (
     <>
-      {isLoading && <Loader />}
+      {(isLoading || hotelListLoader) && <Loader />}
       {isDetails && reportType === '1' && (
         <NormalOrderDetailsModal
           close={() => setDetails(false)}
@@ -129,6 +156,10 @@ const OrderReportScreen = ({reportType = '1'}) => {
         setStatus={setStatus}
         isStatus={isStatus}
         close={() => setFilter(false)}
+        setHotelName={setHotelName}
+        isHotelName={isHotelName}
+        hotelList={hotelList}
+        reportType={reportType}
       />
 
       {!checkData && (
@@ -149,10 +180,18 @@ const OrderReportScreen = ({reportType = '1'}) => {
             showFromDate={showFromDate}
             setStatus={setStatus}
             isStatus={isStatus}
+            setHotelName={setHotelName}
+            isHotelName={isHotelName}
+            hotelList={hotelList}
+            reportType={reportType}
           />
         )}
         {!checkData && (
-          <ReportTable data={data} handleViewDetails={handleViewDetails} />
+          <ReportTable
+            reportType={reportType}
+            data={data}
+            handleViewDetails={handleViewDetails}
+          />
         )}
       </ScrollView>
     </>

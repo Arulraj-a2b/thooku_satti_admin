@@ -11,3 +11,4 @@ export const GET_MARKET_ORDER = 'market/GET_MARKET_ORDER';
 export const UPDATE_MARKET_ORDER = 'market/UPDATE_MARKET_ORDER';
 
 export const REPORT = 'report/REPORT';
+export const GET_HOTEL_REPORT = 'report/GET_HOTEL_REPORT';
