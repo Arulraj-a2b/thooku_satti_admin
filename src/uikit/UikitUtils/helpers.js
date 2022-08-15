@@ -34,3 +34,7 @@ export const getDateString = (value, format, isUnix, convertToLocal) => {
 export const isFinancial = (x) => {
   return Number.parseFloat(x).toFixed(2);
 };
+
+
+export const get = (obj, path) =>
+  path.split('.').reduce((p, c) => (p && p[c]) || null, obj);

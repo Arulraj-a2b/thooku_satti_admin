@@ -132,6 +132,17 @@ const DrawerContent = props => {
         </View>
       ),
     },
+    {
+      route: () => {
+        props.navigation.navigate(routesPath.ORDER_REPORT_SCREEN);
+      },
+      title: 'Order Report',
+      icon: (
+        <View style={{position: 'relative', right: 2}}>
+          <SvgRestaurant width={18} height={18} fill={GRAY_6} />
+        </View>
+      ),
+    },
   ];
 
   return (
