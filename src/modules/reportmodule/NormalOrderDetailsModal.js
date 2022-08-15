@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {useRoute} from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import {useDispatch, useSelector} from 'react-redux';
 import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
@@ -8,11 +7,11 @@ import SvgLocation3 from '../../icons/SvgLocation3';
 import {INDIAN_RUPEE} from '../../uikit/UikitUtils/constants';
 import {isFinancial} from '../../uikit/UikitUtils/helpers';
 import {getOrderDetailsMiddleWare} from '../orderwaitingmodule/store/orderWaitingMiddleware';
-import HomePlaceHolder from '../common/HomePlaceHolder';
 import Flex from '../../uikit/Flex/Flex';
 import Text from '../../uikit/Text/Text';
 import {isEmpty} from '../../uikit/UikitUtils/validators';
 import SvgClose from '../../icons/SvgClose';
+import Loader from '../../uikit/Loader/Loader';
 
 const styles = StyleSheet.create({
   overAll: {
@@ -84,7 +83,7 @@ const NormalOrderDetailsModal = ({orderId, open,close}) => {
   });
 
   if (isLoading) {
-    return <HomePlaceHolder />;
+    return <Loader />;
   }
 
   return (

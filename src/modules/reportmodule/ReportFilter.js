@@ -80,6 +80,7 @@ const ReportFilter = ({
       <View style={styles.margin16}>
         <InputText
           height={50}
+          placeholder='Enter Order ID'
           label={'Order ID'}
           types="normal"
           value={formik.values.orderID}
@@ -96,6 +97,8 @@ const ReportFilter = ({
             setValue={setHotelName}
             data={hotelList}
             listMode="MODAL"
+            placeholder={'Select Hotel Name'}
+            searchPlaceholder={"Type Hotel Name..."}
           />
         </View>
       )}

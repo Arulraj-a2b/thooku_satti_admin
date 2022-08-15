@@ -1,7 +1,7 @@
 import {useFormik} from 'formik';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
+import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {DateTimePickerAndroid} from '@react-native-community/datetimepicker';
 import {getDateString} from '../../uikit/UikitUtils/helpers';
 import {
@@ -15,11 +15,13 @@ import ReportFilter from './ReportFilter';
 import Flex from '../../uikit/Flex/Flex';
 import Text from '../../uikit/Text/Text';
 import SvgFilter from '../../icons/SvgFilter';
-import {BORDER_COLOR} from '../../uikit/UikitUtils/colors';
+import {BORDER_COLOR, PRIMARY} from '../../uikit/UikitUtils/colors';
 import ReportFilterModal from './ReportFilterModal';
 import MarketOrderDetailsModal from './MarketOrderDetailsModal';
 import {useFocusEffect} from '@react-navigation/native';
 import {resetReport} from './store/reportReducer';
+import SvgRightArrow from '../../icons/SvgRightArrow';
+import {GARY_2} from '../../uikit/UikitUtils/colors';
 
 const styles = StyleSheet.create({
   filterFlex: {
@@ -27,6 +29,19 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     borderBottomColor: BORDER_COLOR,
     borderBottomWidth: 1,
+  },
+  svgLeft: {
+    borderWidth: 1,
+    borderRadius: 4,
+    height: 24,
+    width: 30,
+    justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  countText: {
+    paddingHorizontal: 8,
   },
 });
 
@@ -36,7 +51,18 @@ const OrderReportScreen = ({reportType = '1'}) => {
   const [isDetails, setDetails] = useState(false);
   const [isOrderId, setOrderId] = useState('');
   const [isFilter, setFilter] = useState(false);
+  const [isPage, setPage] = useState(1);
   const dispatch = useDispatch();
+  const myRef = useRef();
+
+  const onFabPress = () => {
+    if (myRef && myRef.current) {
+      myRef.current.scrollTo({
+        y: 0,
+        animated: true,
+      });
+    }
+  };
 
   useEffect(() => {
     if (reportType === '1') {
@@ -47,6 +73,7 @@ const OrderReportScreen = ({reportType = '1'}) => {
   useFocusEffect(
     useCallback(() => {
       dispatch(resetReport());
+      setPage(1);
     }, []),
   );
 
@@ -60,8 +87,8 @@ const OrderReportScreen = ({reportType = '1'}) => {
       };
     },
   );
-console.log('data',);
   const handleSubmit = value => {
+    setPage(1);
     dispatch(
       generateAdminReportMiddleWare({
         ReportType: reportType,
@@ -73,6 +100,7 @@ console.log('data',);
         HotelID: value.hotelID,
       }),
     ).then(() => {
+      onFabPress();
       setFilter(false);
     });
   };
@@ -131,6 +159,41 @@ console.log('data',);
     setDetails(true);
   };
 
+  const handleIncrementPage = () => {
+    setPage(a => a + 1);
+    dispatch(
+      generateAdminReportMiddleWare({
+        ReportType: reportType,
+        FromDate: getDateString(formik.values.fromDate, 'YYYY-MM-DD'),
+        Todate: getDateString(formik.values.toDate, 'YYYY-MM-DD'),
+        StatusCode: formik.values.status,
+        PagenationNo: isPage,
+        OrderID: formik.values.orderID,
+        HotelID: formik.values.hotelID,
+      }),
+    ).then(() => {
+      onFabPress();
+    });
+  };
+
+  const handleDecrementPage = () => {
+    if (isPage > 1) {
+      setPage(a => a - 1);
+      dispatch(
+        generateAdminReportMiddleWare({
+          ReportType: reportType,
+          FromDate: getDateString(formik.values.fromDate, 'YYYY-MM-DD'),
+          Todate: getDateString(formik.values.toDate, 'YYYY-MM-DD'),
+          StatusCode: formik.values.status,
+          PagenationNo: isPage,
+          OrderID: formik.values.orderID,
+          HotelID: formik.values.hotelID,
+        }),
+      ).then(() => {
+        onFabPress();
+      });
+    }
+  };
   return (
     <>
       {(isLoading || hotelListLoader) && <Loader />}
@@ -172,7 +235,7 @@ console.log('data',);
           </TouchableOpacity>
         </Flex>
       )}
-      <ScrollView>
+      <ScrollView ref={myRef}>
         {checkData && (
           <ReportFilter
             formik={formik}
@@ -187,11 +250,35 @@ console.log('data',);
           />
         )}
         {!checkData && (
-          <ReportTable
-            reportType={reportType}
-            data={data}
-            handleViewDetails={handleViewDetails}
-          />
+          <Flex>
+            <ReportTable
+              reportType={reportType}
+              data={data}
+              handleViewDetails={handleViewDetails}
+            />
+            <Flex row center middle overrideStyle={{marginBottom: 30}}>
+              <TouchableOpacity
+                disabled={isPage === 1}
+                onPress={handleDecrementPage}
+                style={[
+                  styles.svgLeft,
+                  {borderColor: isPage === 1 ? GARY_2 : PRIMARY},
+                ]}>
+                <View style={{transform: [{rotate: '180deg'}]}}>
+                  <SvgRightArrow fill={GARY_2} />
+                </View>
+              </TouchableOpacity>
+              <Text overrideStyle={styles.countText}>{isPage}</Text>
+              <TouchableOpacity
+                style={[
+                  styles.svgLeft,
+                  {borderColor:  PRIMARY},
+                ]}
+                onPress={handleIncrementPage}>
+                <SvgRightArrow fill={GARY_2} />
+              </TouchableOpacity>
+            </Flex>
+          </Flex>
         )}
       </ScrollView>
     </>

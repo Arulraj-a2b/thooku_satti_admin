@@ -1,7 +1,9 @@
-import moment from "moment";
-import { isEmpty } from "./validators";
+import { useFocusEffect } from '@react-navigation/native';
+import moment from 'moment';
+import { useCallback, useRef } from 'react';
+import {isEmpty} from './validators';
 
-export const isValidDate = (date) => {
+export const isValidDate = date => {
   const timestamp = Date.parse(date);
   return Number.isNaN(timestamp) === false;
 };
@@ -15,9 +17,9 @@ export const isValidDate = (date) => {
  */
 export const getDateString = (value, format, isUnix, convertToLocal) => {
   if (
-    (typeof value === "string" ||
-      typeof value === "number" ||
-      typeof value === "object") &&
+    (typeof value === 'string' ||
+      typeof value === 'number' ||
+      typeof value === 'object') &&
     !Array.isArray(value) &&
     !isEmpty(format)
   ) {
@@ -28,13 +30,31 @@ export const getDateString = (value, format, isUnix, convertToLocal) => {
       return moment.parseZone(value).format(format);
     }
   }
-  return "";
+  return '';
 };
 
-export const isFinancial = (x) => {
+export const isFinancial = x => {
   return Number.parseFloat(x).toFixed(2);
 };
 
-
 export const get = (obj, path) =>
   path.split('.').reduce((p, c) => (p && p[c]) || null, obj);
+
+export const scrollTop = () => {
+  const myRef = useRef();
+  const onFabPress = () => {
+    if (myRef && myRef.current) {
+      myRef.current.scrollTo({
+        y: 0,
+        animated: true,
+      });
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      setTimeout(() => onFabPress(), 0);
+    }, []),
+  );
+  return {scrollRef: myRef};
+};

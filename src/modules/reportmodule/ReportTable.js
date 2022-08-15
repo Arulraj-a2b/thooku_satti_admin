@@ -10,8 +10,10 @@ import Text from '../../uikit/Text/Text';
 
 const styles = StyleSheet.create({
   overAll: {
-    paddingHorizontal: 20,
-    paddingVertical: 40,
+    marginHorizontal: 20,
+    // paddingVertical: 40,
+    paddingTop: 40,
+    paddingBottom: 24
   },
   border: {
     borderWidth: 1,
@@ -87,32 +89,30 @@ const ReportTable = ({data, handleViewDetails, reportType}) => {
   );
 
   return (
-    <View style={styles.overAll}>
-      <ScrollView horizontal>
-        <Table borderStyle={styles.border} style={{width: 800}}>
-          <Row
-            data={tableHead}
-            style={styles.head}
-            textStyle={styles.titleText}
-          />
-          {orderIdArray.map((rowData, index) => (
-            <TableWrapper key={index} style={styles.row}>
-              {rowData.map((cellData, cellIndex) => (
-                <Cell
-                  key={cellIndex}
-                  data={
-                    cellIndex === 0
-                      ? element(cellData, handleViewDetails)
-                      : cellData
-                  }
-                  textStyle={styles.text}
-                />
-              ))}
-            </TableWrapper>
-          ))}
-        </Table>
-      </ScrollView>
-    </View>
+    <ScrollView horizontal style={styles.overAll}>
+      <Table borderStyle={styles.border} style={{width: 800}}>
+        <Row
+          data={tableHead}
+          style={styles.head}
+          textStyle={styles.titleText}
+        />
+        {orderIdArray.map((rowData, index) => (
+          <TableWrapper key={index} style={styles.row}>
+            {rowData.map((cellData, cellIndex) => (
+              <Cell
+                key={cellIndex}
+                data={
+                  cellIndex === 0
+                    ? element(cellData, handleViewDetails)
+                    : cellData
+                }
+                textStyle={styles.text}
+              />
+            ))}
+          </TableWrapper>
+        ))}
+      </Table>
+    </ScrollView>
   );
 };
 
