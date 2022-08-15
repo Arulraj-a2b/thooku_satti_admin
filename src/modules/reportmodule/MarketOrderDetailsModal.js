@@ -145,6 +145,7 @@ const MarketOrderDetailsModal = ({orderId, open, close}) => {
               <ListText name="Delivery Address" value={data?.DeliveryAddress} />
               <ListText name="Order Date" value={data?.OrderedDate} />
               <ListText name="Status" value={data?.Status} />
+              <ListText name="Notes" value={data?.Status} />
               <LabelWrapper label={'Order List'}>
                 <Image
                   style={styles.imageView}

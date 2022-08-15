@@ -160,6 +160,14 @@ const NormalOrderDetailsModal = ({orderId, open,close}) => {
               </Text>
               <Text overrideStyle={{width: '88%'}}>{data[0].LiveStatus}</Text>
             </Flex>
+            {!isEmpty(data[0].Notes) && (
+            <Flex row overrideStyle={{marginBottom: 8}}>
+              <Text bold overrideStyle={{width: 80}}>
+                Notes
+              </Text>
+              <Text overrideStyle={{width: '88%'}}>{data[0].Notes}</Text>
+            </Flex>
+          )}
             <View style={styles.hrLine} />
             <Text color="gary" bold overrideStyle={styles.billTitle}>
               BILL DETAILS:
