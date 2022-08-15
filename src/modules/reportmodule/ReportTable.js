@@ -40,11 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ReportTable = ({data, setOrderId, setDetails}) => {
-  const handleViewDetails = id => {
-    setOrderId(id);
-    setDetails(true);
-  };
+const ReportTable = ({data, handleViewDetails}) => {
   const tableHead = [
     'Order ID',
     'Hotel Name',

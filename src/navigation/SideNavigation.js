@@ -1,6 +1,6 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import React from 'react';
-import OrderReport from '../modules/reportmodule/OrderReport';
+import OrderReportScreen from '../modules/reportmodule/OrderReportScreen';
 import {routesPath} from '../routes/routesPath';
 import {WHITE} from '../uikit/UikitUtils/colors';
 import BottomTab from './BottomTab';
@@ -27,10 +27,17 @@ const SideNavigation = () => {
       />
       <Drawer.Screen
         options={{
-          header: props => <Header props={props} isBack isMenu />,
+          header: props => <Header props={props} isMenu />,
         }}
         name={routesPath.ORDER_REPORT_SCREEN}
-        component={OrderReport}
+        component={OrderReportScreen}
+      />
+      <Drawer.Screen
+        options={{
+          header: props => <Header props={props} isMenu />,
+        }}
+        name={routesPath.MARKET_ORDER_REPORT_SCREEN}
+        component={() => <OrderReportScreen reportType="2" />}
       />
     </Drawer.Navigator>
   );

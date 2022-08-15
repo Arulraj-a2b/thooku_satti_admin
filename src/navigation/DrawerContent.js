@@ -20,6 +20,7 @@ import SvgOrderPickup from '../icons/SvgOrderPickup';
 import SvgOrderSuccess from '../icons/SvgOrderSuccess';
 import SvgOrderCancel from '../icons/SvgOrderCancel';
 import SvgRestaurant from '../icons/SvgRestaurant';
+import SvgReport from '../icons/SvgReport';
 
 const styles = StyleSheet.create({
   listStyle: {
@@ -139,7 +140,18 @@ const DrawerContent = props => {
       title: 'Order Report',
       icon: (
         <View style={{position: 'relative', right: 2}}>
-          <SvgRestaurant width={18} height={18} fill={GRAY_6} />
+          <SvgReport width={18} height={18} fill={GRAY_6} />
+        </View>
+      ),
+    },
+    {
+      route: () => {
+        props.navigation.navigate(routesPath.MARKET_ORDER_REPORT_SCREEN);
+      },
+      title: 'Market Order Report',
+      icon: (
+        <View style={{position: 'relative', right: 2}}>
+          <SvgReport width={18} height={18} fill={GRAY_6} />
         </View>
       ),
     },

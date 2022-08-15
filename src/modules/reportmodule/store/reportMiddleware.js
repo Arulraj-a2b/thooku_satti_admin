@@ -22,6 +22,9 @@ export const generateAdminReportMiddleWare = createAsyncThunk(
           HotelID,
         },
       });
+      if (data.length === 0) {
+        Toast('No Order Found', 'error');
+      }
       return data;
     } catch (error) {
       Toast(error.response.data[0].Message, 'error');
