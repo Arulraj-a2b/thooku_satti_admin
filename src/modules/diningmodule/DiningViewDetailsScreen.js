@@ -46,11 +46,11 @@ const DiningViewDetailsScreen = () => {
   });
 
   const bookingStatus =
-    data.length !== 0 && data[0].BookingStatus.toLowerCase() === 'accepted'
+    data.length !== 0 && data[0].BookingStatus.toLowerCase() === 'pending'
       ? true
       : false;
 
-  const handleAccept = id => {
+  const handleAccept = () => {
     setStatusLoader(true);
     dispatch(
       updateDiningStatusMiddleWare({
@@ -147,7 +147,7 @@ const DiningViewDetailsScreen = () => {
         {!isEmpty(data[0].Notes) && (
           <ListText name="Notes" value={data[0].Notes} />
         )}
-        {bookingStatus && !isEmpty(data[0].BilluploadStatus) && (
+        {!isEmpty(data[0].BilluploadStatus) && (
           <ListText name="Bill Status" value={data[0].BilluploadStatus} />
         )}
         {!isEmpty(data[0].BillRefno) && (
@@ -160,7 +160,7 @@ const DiningViewDetailsScreen = () => {
           />
         )}
 
-        {bookingStatus && !isEmpty(data[0].BillImagePath) && (
+        {!isEmpty(data[0].BillImagePath) && (
           <Flex row overrideStyle={{marginBottom: 16}}>
             <Text bold overrideStyle={styles.nameStyle}>
               Download Bill
@@ -174,7 +174,7 @@ const DiningViewDetailsScreen = () => {
             </TouchableOpacity>
           </Flex>
         )}
-        {!bookingStatus && (
+        {bookingStatus && (
           <Flex row middle overrideStyle={{marginTop: 16}}>
             <Button
               onClick={() => handleRejectModal(data[0].BookingID)}
