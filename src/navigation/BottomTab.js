@@ -4,11 +4,9 @@ import {routesPath} from '../routes/routesPath';
 import SvgWaiting from '../icons/SvgWaiting';
 import TabBarIcon from './TabBarIcon';
 import {GRAY_4, PRIMARY, WHITE} from '../uikit/UikitUtils/colors';
-import SvgOrderPickup from '../icons/SvgOrderPickup';
 import SvgOrderSuccess from '../icons/SvgOrderSuccess';
 import SvgOrderCancel from '../icons/SvgOrderCancel';
 import OrderWaitingScreen from '../modules/orderwaitingmodule/OrderWaitingScreen';
-import OrderPickupScreen from '../modules/orderpickupmodule/OrderPickupScreen';
 import OrderSuccessScreen from '../modules/ordersuccessmodule/OrderSuccessScreen';
 import OrderCancelListScreen from '../modules/ordercancellistmodule/OrderCancelListScreen';
 import DiningScreen from '../modules/diningmodule/DiningScreen';
@@ -18,7 +16,7 @@ const Tab = createBottomTabNavigator();
 
 const BottomTab = () => {
   return (
-    <Tab.Navigator sceneContainerStyle={{backgroundColor:WHITE}}>
+    <Tab.Navigator sceneContainerStyle={{backgroundColor: WHITE}}>
       <Tab.Screen
         name={routesPath.ORDER_WAITING_SCREEN}
         component={OrderWaitingScreen}
@@ -32,19 +30,6 @@ const BottomTab = () => {
           headerShown: false,
         }}
       />
-      {/* <Tab.Screen
-        name={routesPath.ORDER_PREPARATION_SCREEN}
-        component={OrderPickupScreen}
-        options={{
-          title: '',
-          tabBarIcon: ({focused}) => (
-            <TabBarIcon
-              icon={<SvgOrderPickup fill={focused ? PRIMARY : GRAY_4} />}
-            />
-          ),
-          headerShown: false,
-        }}
-      /> */}
       <Tab.Screen
         name={routesPath.ORDER_PICKUP_SCREEN}
         component={OrderSuccessScreen}

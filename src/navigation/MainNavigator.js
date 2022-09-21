@@ -3,11 +3,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {WHITE} from '../uikit/UikitUtils/colors';
 import {routesPath} from '../routes/routesPath';
 import LoginScreen from '../modules/loginmodule/LoginScreen';
-import SideNavigation from './SideNavigation';
 import OrderDetailsScreen from '../modules/orderdetailsmodule/OrderDetailsScreen';
-import Header from './Header';
 import DiningViewDetailsScreen from '../modules/diningmodule/DiningViewDetailsScreen';
 import MarketOrderViewScreen from '../modules/marketmodule/MarketOrderViewScreen';
+import Header from './Header';
+import SideNavigation from './SideNavigation';
 
 const Stack = createNativeStackNavigator();
 

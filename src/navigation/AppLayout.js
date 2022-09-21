@@ -1,7 +1,10 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {localNotificationNavigate, notificationListener} from '../utility/notificationService';
+import {
+  localNotificationNavigate,
+  notificationListener,
+} from '../utility/notificationService';
 import MainNavigator from './MainNavigator';
 
 const AppLayout = () => {
