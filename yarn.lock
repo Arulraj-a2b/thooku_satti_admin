@@ -6308,10 +6308,10 @@ react-native-raw-bottom-sheet@^2.2.0:
   resolved "https://registry.yarnpkg.com/react-native-raw-bottom-sheet/-/react-native-raw-bottom-sheet-2.2.0.tgz#d11dabb86aadb014273767ef7b554924b13633c5"
   integrity sha512-qL4JKIqvbcVxbkKzeh51hjV7suoJN3ouxzvLmOg0FBUV1yiJAfEbacjQdtRCI6+OU5pyGFBIifLsTXcFDwHggg==
 
-react-native-reanimated@^3.0.0-rc.0:
-  version "3.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-3.0.0-rc.0.tgz#05edcb2d9ca99c50d6e0ce378b74a5a0661bba93"
-  integrity sha512-YlkqVPKVs97ZMRwzdrxuhCXvU6RjxXmxE9rOiyAij/uJVMb+5Zx5CQH5ngfKjT/iEqC8HE/n6jd3pi3UlKsPeQ==
+react-native-reanimated@^2.13.0:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.13.0.tgz#d64c1386626822d4dc22094b4efe028ff2c49cc9"
+  integrity sha512-yUHyYVIegWWIza4+nVyS3CSmI/Mc8kLFVHw2c6gnSHaYhYA4LeEjH/jBkoMzHk9Xd0Ra3cwtjYKAMG8OTp6JVg==
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.16.7"
     "@babel/preset-typescript" "^7.16.7"
